@@ -4,65 +4,326 @@ import { CATEGORY_CONFIG } from '../config/categories';
 
 const reviews = await getCollection('reviews');
 
-// Descobrir quais categorias estão realmente em uso
+// Só mostra categorias que já têm ao menos 1 review
 const categoriesInUse = Object.entries(CATEGORY_CONFIG).filter(
   ([label]) => reviews.some((r) => r.data.category === label)
 );
 ---
 
+<!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <title>Best Supplements Today — Trusted Supplement Reviews</title>
+    <meta charset="utf-8" />
+    <title>Best Supplements Today — Expert Supplement Reviews</title>
     <meta
       name="description"
-      content="Evidence-based supplement reviews organized by category to help you find the right product for your health goals."
+      content="Evidence-based supplement reviews organized by category to help you compare natural products for weight loss, brain health, circulation, liver, dental, men’s and women’s health, and more."
     />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="canonical" href="https://bestsupplementstoday.com/" />
+
+    <style>
+      :root {
+        --bg-page: #f3f4f6;
+        --bg-card: #ffffff;
+        --accent: #2563eb;
+        --accent-soft: #eff6ff;
+        --text-main: #0f172a;
+        --text-muted: #64748b;
+        --border-subtle: #e2e8f0;
+        --radius-card: 18px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        background: var(--bg-page);
+        color: var(--text-main);
+      }
+
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .page {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      header {
+        border-bottom: 1px solid var(--border-subtle);
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(8px);
+      }
+
+      .header-inner {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 14px 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .logo {
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+
+      nav {
+        display: flex;
+        gap: 20px;
+        font-size: 14px;
+        color: var(--text-muted);
+      }
+
+      nav a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      nav a:hover {
+        color: var(--text-main);
+      }
+
+      main {
+        flex: 1;
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 32px 16px 40px;
+      }
+
+      .hero {
+        text-align: center;
+        margin-bottom: 28px;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 12px;
+        border-radius: 999px;
+        background: var(--accent-soft);
+        color: #1d4ed8;
+        font-size: 11px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: 10px;
+      }
+
+      .pill-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 999px;
+        background: var(--accent);
+      }
+
+      .hero h1 {
+        font-size: 28px;
+        line-height: 1.2;
+        margin: 8px 0 10px;
+      }
+
+      @media (min-width: 768px) {
+        .hero h1 {
+          font-size: 34px;
+        }
+      }
+
+      .hero p {
+        max-width: 640px;
+        margin: 0 auto;
+        font-size: 15px;
+        color: var(--text-muted);
+      }
+
+      .category-card {
+        background: var(--bg-card);
+        border-radius: var(--radius-card);
+        padding: 20px 18px;
+        border: 1px solid var(--border-subtle);
+        box-shadow: 0 10px 25px rgba(15, 23, 42, 0.04);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .categories-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      @media (min-width: 640px) {
+        .categories-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .categories-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+
+      .category-name {
+        font-size: 15px;
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+
+      .category-desc {
+        font-size: 13px;
+        color: var(--text-muted);
+        margin-bottom: 12px;
+      }
+
+      .category-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 11px;
+        color: var(--text-muted);
+      }
+
+      .pill-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 6px 12px;
+        border-radius: 999px;
+        border: 1px solid var(--accent);
+        color: var(--accent);
+        font-size: 12px;
+        font-weight: 500;
+        text-decoration: none;
+      }
+
+      .pill-link:hover {
+        background: var(--accent);
+        color: white;
+        text-decoration: none;
+      }
+
+      .section-header {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        margin: 8px 0 14px;
+      }
+
+      .section-header h2 {
+        font-size: 18px;
+        margin: 0;
+      }
+
+      .section-header p {
+        margin: 0;
+        font-size: 13px;
+        color: var(--text-muted);
+      }
+
+      footer {
+        border-top: 1px solid var(--border-subtle);
+        background: #ffffff;
+        font-size: 11px;
+        color: var(--text-muted);
+      }
+
+      .footer-inner {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 10px 16px 14px;
+        display: flex;
+        justify-content: space-between;
+      }
+    </style>
   </head>
 
-  <body class="bg-slate-100 text-slate-900">
-    <header class="w-full border-b border-slate-200 bg-white/80 backdrop-blur">
-      <div class="max-w-6xl mx-auto flex items-center justify-between px-4 py-4">
-        <a href="/" class="text-sm font-semibold tracking-[0.25em] text-slate-900 uppercase">
-          Best Supplements Today
-        </a>
-
-        <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600">
-          <a href="/" class="hover:text-slate-900 transition">Home</a>
-          <a href="/reviews" class="hover:text-slate-900 transition">All Reviews</a>
-        </nav>
-      </div>
-    </header>
-
-    <main class="max-w-6xl mx-auto px-4 pb-20">
-      <!-- HERO -->
-      <section class="pt-10 pb-8 text-center">
-        <h1 class="text-3xl md:text-4xl font-bold mb-4">
-          Explore supplement reviews by category
-        </h1>
-        <p class="max-w-2xl mx-auto text-base md:text-lg text-slate-600">
-          Navigate by health goal — from weight loss and brain support to circulation,
-          liver, dental, men’s and women’s health.
-        </p>
-      </section>
-
-      <!-- MENU DE CATEGORIAS NA HOME -->
-      <section class="mb-10">
-        <div class="flex flex-wrap gap-2 justify-center">
-          {categoriesInUse.map(([label, config]) => (
-            <a
-              href={`/categories/${config.slug}`}
-              class="inline-flex items-center rounded-full border border-slate-300 bg-white px-4 py-1.5 text-xs md:text-sm font-medium text-slate-700 hover:border-blue-500 hover:text-blue-700 hover:shadow-sm transition"
-            >
-              {label}
-            </a>
-          ))}
+  <body>
+    <div class="page">
+      <header>
+        <div class="header-inner">
+          <a href="/" class="logo">Best Supplements Today</a>
+          <nav>
+            <a href="/">Home</a>
+            <a href="/reviews">All Reviews</a>
+          </nav>
         </div>
-      </section>
+      </header>
 
-      <!-- Você pode manter aqui uma seção de "Latest Reviews" se quiser -->
-    </main>
+      <main>
+        <!-- HERO -->
+        <section class="hero">
+          <div class="pill">
+            <span class="pill-dot"></span>
+            Evidence-based supplement hub
+          </div>
+          <h1>Explore supplement reviews by category</h1>
+          <p>
+            Navigate by health goal — from weight loss and brain support to
+            circulation, liver, dental care, men’s and women’s health.
+          </p>
+        </section>
+
+        <!-- CATEGORIAS -->
+        <section>
+          <div class="section-header">
+            <h2>Browse by health category</h2>
+            <p>
+              Select a category to see all supplement reviews related to that
+              area.
+            </p>
+          </div>
+
+          {categoriesInUse.length === 0 ? (
+            <p style="font-size: 13px; color: var(--text-muted);">
+              As you add more reviews with a <code>category</code> field in the
+              frontmatter, they will appear here automatically.
+            </p>
+          ) : (
+            <div class="categories-grid">
+              {categoriesInUse.map(([label, config]) => (
+                <a href={`/categories/${config.slug}`} class="category-card">
+                  <div>
+                    <div class="category-name">{label}</div>
+                    <div class="category-desc">
+                      {config.description}
+                    </div>
+                  </div>
+                  <div class="category-footer">
+                    <span>View reviews</span>
+                    <span>›</span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          )}
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-inner">
+          <span>© {new Date().getFullYear()} Best Supplements Today</span>
+          <span>Independent supplement reviews &amp; analysis</span>
+        </div>
+      </footer>
+    </div>
   </body>
 </html>
+
