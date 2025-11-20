@@ -1,0 +1,360 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  heroImage?: string;
+  primaryCtaLabel?: string;
+  primaryCtaUrl?: string;
+}
+
+const {
+  title,
+  description,
+  heroImage,
+  primaryCtaLabel,
+  primaryCtaUrl,
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+
+  <!-- Tailwind via CDN + fonte Inter -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #1f2937;
+      background-color: #f9fafb;
+    }
+
+    .text-primary { color: #2563eb; }
+    .border-primary { border-color: #2563eb; }
+
+    .markdown-prose {
+      padding: 1rem 0;
+    }
+
+    .markdown-prose p {
+      margin-bottom: 1.5rem;
+      font-size: 1.125rem;
+      line-height: 1.75;
+      text-align: justify;
+    }
+
+    .markdown-prose h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1f2937;
+      margin-top: 3.5rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #2563eb;
+    }
+
+    .markdown-prose h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      color: #1f2937;
+    }
+
+    .markdown-prose ul,
+    .markdown-prose ol {
+      padding-left: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .markdown-prose ul { list-style: disc; }
+    .markdown-prose ol { list-style: decimal; }
+
+    .markdown-prose li {
+      margin-bottom: 0.5rem;
+    }
+
+    .cta-block {
+      text-align: center;
+      margin: 3rem auto;
+      max-width: 600px;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background-color: #2563eb;
+      color: #ffffff;
+      font-weight: 800;
+      border-radius: 0.75rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.4);
+    }
+
+    .btn-primary:hover {
+      background-color: #1d4ed8;
+      transform: translateY(-2px);
+      box-shadow: 0 15px 20px -5px rgba(37, 99, 235, 0.6);
+    }
+
+    .intro-box {
+      padding: 1.5rem;
+      background-color: #eff6ff;
+      border-left: 5px solid #2563eb;
+      border-radius: 0 0.75rem 0.75rem 0;
+      margin-bottom: 2rem;
+      font-style: italic;
+      font-weight: 500;
+      font-size: 1.125rem;
+      line-height: 1.6;
+      text-align: justify;
+    }
+
+    .pros-cons-block {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin: 2.5rem 0;
+      padding: 1rem 0;
+    }
+
+    @media (min-width: 768px) {
+      .pros-cons-block {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .pros-cons-block .pros {
+      padding: 1.5rem;
+      background-color: #f0fdf4;
+      border-left: 4px solid #10b981;
+      border-radius: 0.5rem;
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+    }
+
+    .pros-cons-block .cons {
+      padding: 1.5rem;
+      background-color: #fef2f2;
+      border-left: 4px solid #ef4444;
+      border-radius: 0.5rem;
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+    }
+
+    .pros-cons-block h3 {
+      margin-top: 0 !important;
+      margin-bottom: 1rem;
+    }
+
+    .pricing-table-container {
+      overflow-x: auto;
+      margin-top: 2.5rem;
+      margin-bottom: 2.5rem;
+      border: 1px solid #e5e7eb;
+      border-radius: 0.75rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .pricing-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 650px;
+      background-color: white;
+      position: relative;
+    }
+
+    .pricing-table th,
+    .pricing-table td {
+      padding: 0.7rem 1rem;
+      text-align: center;
+      font-size: 0.95rem;
+      border-bottom: 1px dashed #d1d5db;
+      vertical-align: middle;
+    }
+
+    .pricing-table thead th {
+      background-color: #f3f4f6;
+      font-weight: 700;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: none;
+      position: relative;
+    }
+
+    .pricing-table thead .best-value-header {
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+    }
+
+    .pricing-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .pricing-table .row-label {
+      text-align: left;
+      font-weight: 600;
+      color: #1f2937;
+    }
+
+    .pricing-table .bold-black {
+      font-weight: 700;
+      color: #000000;
+    }
+
+    .pricing-table .best-value-col {
+      background-color: #eff6ff;
+    }
+
+    .pricing-table .best-value-header {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0.75rem;
+    }
+
+    .ingredient-card-list {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .ingredient-card {
+      padding: 1.5rem;
+      background-color: #f5f8fa;
+      border: 1px solid #e0e6ed;
+      border-radius: 0.5rem;
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+    }
+
+    .ingredient-card h3 {
+      margin-top: 0 !important;
+      margin-bottom: 0.5rem;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #1f2937;
+    }
+
+    .ingredient-card .dosage {
+      color: #2563eb;
+      font-weight: 700;
+    }
+
+    .tag-container {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #e5e7eb;
+    }
+
+    .tag-item {
+      display: inline-block;
+      background-color: #f3f4f6;
+      color: #4b5563;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      margin: 0.25rem;
+      border: 1px solid #d1d5db;
+    }
+  </style>
+</head>
+
+<body class="min-h-screen flex flex-col antialiased text-gray-800">
+  <!-- HEADER -->
+  <header class="bg-white shadow-md sticky top-0 z-10 border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+      <a href="/" class="text-2xl font-bold text-[#2563eb] tracking-wide">
+        BEST SUPPLEMENTS TODAY
+      </a>
+      <nav class="hidden sm:flex space-x-4">
+        <a href="/" class="text-gray-700 hover:text-[#2563eb] font-medium">Home</a>
+        <a href="/reviews" class="text-gray-700 hover:text-[#2563eb] font-medium">Reviews</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-grow">
+    <div class="container mx-auto max-w-5xl p-4 py-8 md:py-12">
+      <article class="bg-white shadow-2xl rounded-xl overflow-hidden p-6 sm:p-10 md:p-16">
+        <!-- HERO -->
+        <header class="mb-10 text-center">
+          <h1 class="text-3xl md:text-5xl font-extrabold text-gray-900 mb-4 leading-tight">
+            {title}
+          </h1>
+
+          <p class="text-lg md:text-2xl text-gray-600 font-medium mb-8">
+            {description}
+          </p>
+
+          {heroImage && (
+            <div class="my-8 flex justify-center">
+              <a href={primaryCtaUrl} target="_blank" rel="noopener noreferrer">
+                <img
+                  src={heroImage}
+                  alt={`Product image for ${title}`}
+                  class="max-w-full h-auto rounded-xl shadow-lg border border-gray-100"
+                  style={{ maxHeight: '400px' }}
+                />
+              </a>
+            </div>
+          )}
+        </header>
+
+        <!-- CONTEÚDO DO REVIEW -->
+        <section class="markdown-prose">
+          <slot />
+        </section>
+      </article>
+    </div>
+
+    {primaryCtaUrl && primaryCtaLabel && (
+      <section class="bg-[#2563eb] rounded-xl shadow-2xl p-8 text-center mt-12 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h3 class="text-3xl font-extrabold text-white mb-6">
+          {primaryCtaLabel}
+        </h3>
+        <a
+          href={primaryCtaUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-block py-4 px-10 bg-[#2563eb] text-white text-xl font-extrabold rounded-lg shadow-2xl transition duration-300 transform hover:scale-105 hover:bg-[#1d4ed8]"
+          style="border: 3px solid white;"
+        >
+          VISIT OFFICIAL WEBSITE NOW
+        </a>
+      </section>
+    )}
+  </main>
+
+  <footer class="bg-gray-800 text-white py-6 mt-12">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
+      <p>&copy; {new Date().getFullYear()} Best Supplements Today. All rights reserved.</p>
+      <div class="mt-2 space-x-4">
+        <a href="/privacy" class="hover:text-[#2563eb]">Privacy Policy</a>
+        <a href="/terms" class="hover:text-[#2563eb]">Terms of Use</a>
+      </div>
+    </div>
+  </footer>
+
+  {primaryCtaUrl && primaryCtaLabel && (
+    <div
+      class="fixed bottom-0 left-0 right-0 p-4 bg-white shadow-[0_-5px_15px_rgba(0,0,0,0.1)] z-20 md:hidden"
+    >
+      <a
+        href={primaryCtaUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="block w-full text-center py-3 text-lg font-extrabold bg-[#2563eb] text-white rounded-lg shadow-xl transition duration-300 transform hover:scale-[1.02] active:scale-95 animate-pulse"
+      >
+        See Official Discounts
+      </a>
+    </div>
+  )}
+</body>
+</html>
+

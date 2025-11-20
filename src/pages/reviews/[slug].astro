@@ -1,0 +1,36 @@
+---
+import { getCollection } from 'astro:content';
+import FullReviewLayout from '../../layouts/FullReviewLayout.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('reviews');
+  return entries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+const { data } = entry;
+---
+
+<head>
+  <title>{data.pageTitle}</title>
+  <meta name="description" content={data.metaDescription} />
+</head>
+
+<FullReviewLayout
+  title={data.title}
+  description={data.description}
+  heroImage={data.heroImage}
+  heroAlt={data.heroAlt}
+  heroCaption={data.heroCaption}
+  primaryCtaLabel={data.primaryCtaLabel}
+  primaryCtaUrl={data.primaryCtaUrl}
+>
+  <Content />
+</FullReviewLayout>
+
+
+
