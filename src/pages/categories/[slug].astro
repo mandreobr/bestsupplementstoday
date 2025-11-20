@@ -2,10 +2,21 @@
 import { getCollection } from 'astro:content';
 import { CATEGORY_CONFIG } from '../../config/categories';
 
+// 1) Gerar todos os caminhos estáticos para as categorias
+export async function getStaticPaths() {
+  const paths = Object.values(CATEGORY_CONFIG).map((config) => ({
+    params: { slug: config.slug }
+  }));
+
+  return paths;
+}
+
+// 2) Carregar todos os reviews
 const reviews = await getCollection('reviews');
+
+// 3) Ler o slug da URL e encontrar a categoria correspondente
 const { slug } = Astro.params;
 
-// Encontrar a categoria correspondente a este slug
 const entries = Object.entries(CATEGORY_CONFIG);
 const match = entries.find(([_, cfg]) => cfg.slug === slug);
 
@@ -15,7 +26,7 @@ if (!match) {
 
 const [categoryLabel, categoryConfig] = match;
 
-// Filtrar reviews dessa categoria
+// 4) Filtrar reviews dessa categoria
 const categoryReviews = reviews.filter(
   (r) => r.data.category === categoryLabel
 );
@@ -25,10 +36,7 @@ const categoryReviews = reviews.filter(
   <head>
     <meta charset="UTF-8" />
     <title>{categoryLabel} — Supplement Reviews | Best Supplements Today</title>
-    <meta
-      name="description"
-      content={categoryConfig.description}
-    />
+    <meta name="description" content={categoryConfig.description} />
     <meta
       name="robots"
       content={categoryReviews.length === 0 ? 'noindex,follow' : 'index,follow'}
@@ -38,45 +46,4 @@ const categoryReviews = reviews.filter(
   <body class="bg-slate-100 text-slate-900">
     <main class="max-w-6xl mx-auto px-4 pb-20">
       <header class="pt-10 pb-6">
-        <a href="/" class="text-xs text-blue-700 hover:underline">&larr; Back to Home</a>
-        <h1 class="mt-2 text-2xl md:text-3xl font-bold">{categoryLabel}</h1>
-        <p class="mt-2 text-sm md:text-base text-slate-600">
-          {categoryConfig.description}
-        </p>
-      </header>
-
-      {categoryReviews.length === 0 ? (
-        <p class="text-sm text-slate-500">
-          No reviews have been published in this category yet.
-        </p>
-      ) : (
-        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {categoryReviews.map((item) => (
-            <a
-              href={`/reviews/${item.slug}`}
-              class="group bg-white rounded-2xl shadow-sm p-5 flex flex-col justify-between hover:shadow-md transition"
-            >
-              <div>
-                <p class="text-[11px] font-semibold uppercase tracking-wide text-slate-400 mb-1">
-                  {item.data.keyCondition ?? 'Supplement Review'}
-                </p>
-                <h2 class="text-sm font-semibold mb-2 group-hover:text-blue-700 transition">
-                  {item.data.productName ?? item.slug}
-                </h2>
-                <p class="text-xs text-slate-600 line-clamp-3">
-                  {item.data.shortDescription ??
-                    item.data.subheader ??
-                    'Click to read the full ingredient breakdown, benefits, safety notes, and our verdict.'}
-                </p>
-              </div>
-              <div class="mt-4 flex items-center justify-between text-[11px] text-slate-400">
-                <span>Read review</span>
-                <span>›</span>
-              </div>
-            </a>
-          ))}
-        </section>
-      )}
-    </main>
-  </body>
-</html>
+        <a href="/" class="text-xs text-b
