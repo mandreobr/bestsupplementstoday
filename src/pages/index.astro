@@ -9,16 +9,17 @@ const categoriesInUse = Object.entries(CATEGORY_CONFIG).filter(
   ([label]) => reviews.some((r) => r.data.category === label)
 );
 
-// Imagens do carrossel (ajuste os nomes se tiver salvo diferente)
+// Imagens do carrossel (rodapé horizontal)
 const carouselImages = [
-  { src: '/old-man-gym.jpg', alt: 'Older man training at the gym' },
-  { src: '/supplements-hand.jpg', alt: 'Hands holding colorful supplement capsules' },
-  { src: '/supplements-yellow.jpg', alt: 'Supplements on a yellow background' },
   { src: '/omega-softgels.jpg', alt: 'Omega-3 softgels spilling from a jar' },
-  { src: '/woman-plank.jpg', alt: 'Woman exercising on the beach' },
   { src: '/barbell-gym.jpg', alt: 'Athlete holding barbell at the gym' },
+  { src: '/woman-plank.jpg', alt: 'Woman exercising on the beach' },
+  { src: '/supplements-yellow.jpg', alt: 'Supplements on a yellow background' },
   { src: '/back-muscles.jpg', alt: 'Back muscles of a fit woman at the gym' }
 ];
+
+// Duplicamos o array para dar efeito de loop contínuo no carrossel
+const scrollingImages = [...carouselImages, ...carouselImages];
 ---
 
 <!doctype html>
@@ -38,14 +39,12 @@ const carouselImages = [
 
     <style>
       :root {
-        --bg-page: #f3f4f6;
-        --bg-card: #ffffff;
         --accent: #0ea5e9;
         --accent-soft: #e0f2fe;
         --text-main: #0f172a;
         --text-muted: #64748b;
-        --border-subtle: #e2e8f0;
-        --radius-card: 18px;
+        --border-subtle: #e5e7eb;
+        --max-width: 980px;
       }
 
       * {
@@ -56,7 +55,7 @@ const carouselImages = [
         margin: 0;
         font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
           sans-serif;
-        background: var(--bg-page);
+        background: #ffffff; /* fundo branco em toda a página */
         color: var(--text-main);
       }
 
@@ -71,19 +70,18 @@ const carouselImages = [
         flex-direction: column;
       }
 
-      /* HEADER */
+      /* HEADER (fundo branco, igual full review) */
 
       header {
         border-bottom: 1px solid var(--border-subtle);
-        background: rgba(255, 255, 255, 0.96);
-        backdrop-filter: blur(10px);
+        background: #ffffff;
         position: sticky;
         top: 0;
         z-index: 20;
       }
 
       .header-inner {
-        max-width: 1120px;
+        max-width: var(--max-width);
         margin: 0 auto;
         padding: 10px 16px;
         display: flex;
@@ -94,7 +92,6 @@ const carouselImages = [
       .logo-wrap {
         display: flex;
         align-items: center;
-        gap: 8px;
       }
 
       .logo-img {
@@ -140,24 +137,18 @@ const carouselImages = [
         right: 0;
         min-width: 260px;
         background: #ffffff;
-        border-radius: 14px;
+        border-radius: 10px;
         border: 1px solid var(--border-subtle);
-        box-shadow: 0 16px 40px rgba(15, 23, 42, 0.16);
-        padding: 10px 10px 8px;
+        box-shadow: 0 14px 40px rgba(15, 23, 42, 0.15);
+        padding: 8px 8px 6px;
         display: grid;
         grid-template-columns: 1fr;
-        gap: 4px;
+        gap: 2px;
         opacity: 0;
         pointer-events: none;
         transform: translateY(4px);
-        transition: opacity 0.16s ease-out, transform 0.16s ease-out;
+        transition: opacity 0.15s ease-out, transform 0.15s ease-out;
         z-index: 30;
-      }
-
-      @media (min-width: 640px) {
-        .dropdown-menu {
-          grid-template-columns: 1fr;
-        }
       }
 
       .nav-dropdown:hover .dropdown-menu {
@@ -176,32 +167,27 @@ const carouselImages = [
 
       .dropdown-item {
         font-size: 13px;
-        padding: 6px 8px;
-        border-radius: 10px;
+        padding: 5px 6px;
+        border-radius: 8px;
         color: var(--text-main);
       }
 
-      .dropdown-item span {
-        font-size: 11px;
-        color: var(--text-muted);
-      }
-
       .dropdown-item:hover {
-        background: var(--bg-page);
+        background: #f3f4f6;
       }
 
-      /* MAIN LAYOUT */
+      /* MAIN (mesma largura visual do full review) */
 
       main {
         flex: 1;
-        max-width: 1120px;
+        max-width: var(--max-width);
         margin: 0 auto;
         padding: 28px 16px 40px;
       }
 
       .hero {
         text-align: center;
-        margin-bottom: 22px;
+        margin-bottom: 26px;
       }
 
       .pill {
@@ -234,136 +220,50 @@ const carouselImages = [
 
       @media (min-width: 768px) {
         .hero h1 {
-          font-size: 34px;
+          font-size: 32px;
         }
       }
 
       .hero-sub {
-        max-width: 680px;
+        max-width: 640px;
         margin: 0 auto;
         font-size: 15px;
         color: var(--text-muted);
       }
 
-      /* INTRO + CARROSSEL LADO A LADO */
+      /* BLOCO INTRODUTÓRIO */
 
-      .intro-carousel {
-        margin-top: 26px;
-        display: flex;
-        flex-direction: column;
-        gap: 18px;
-      }
-
-      @media (min-width: 900px) {
-        .intro-carousel {
-          flex-direction: row;
-        }
-      }
-
-      .intro-card {
-        flex: 1.3;
-        background: var(--bg-card);
-        border-radius: var(--radius-card);
-        padding: 20px 20px 18px;
-        border: 1px solid var(--border-subtle);
-        box-shadow: 0 16px 40px rgba(15, 23, 42, 0.06);
+      .intro-text {
+        max-width: 780px;
+        margin: 24px auto 30px;
         font-size: 14px;
         color: var(--text-muted);
+        line-height: 1.6;
       }
 
-      .intro-card h2 {
-        font-size: 17px;
+      .intro-text h2 {
+        font-size: 18px;
         margin: 0 0 8px;
         color: var(--text-main);
+        text-align: left;
       }
 
-      .intro-card p {
+      .intro-text p {
         margin: 6px 0;
-        line-height: 1.5;
+        text-align: left;
       }
 
-      .intro-card strong {
+      .intro-text strong {
         color: var(--text-main);
       }
 
-      /* CARROSSEL */
-
-      .carousel-wrap {
-        flex: 1;
-        background: var(--bg-card);
-        border-radius: var(--radius-card);
-        border: 1px solid var(--border-subtle);
-        box-shadow: 0 16px 40px rgba(15, 23, 42, 0.06);
-        padding: 10px 10px 14px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-      }
-
-      .carousel-title {
-        font-size: 12px;
-        text-transform: uppercase;
-        letter-spacing: 0.16em;
-        color: var(--text-muted);
-        margin: 0 4px 8px;
-      }
-
-      .carousel {
-        position: relative;
-        border-radius: 14px;
-        overflow: hidden;
-        height: 210px;
-      }
-
-      @media (min-width: 900px) {
-        .carousel {
-          height: 230px;
-        }
-      }
-
-      .carousel-slide {
-        position: absolute;
-        inset: 0;
-        opacity: 0;
-        transition: opacity 0.5s ease-in-out;
-      }
-
-      .carousel-slide img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-      }
-
-      .carousel-slide.active {
-        opacity: 1;
-      }
-
-      .carousel-dots {
-        display: flex;
-        justify-content: center;
-        gap: 6px;
-        margin-top: 8px;
-      }
-
-      .carousel-dot {
-        width: 7px;
-        height: 7px;
-        border-radius: 999px;
-        background: #cbd5f5;
-      }
-
-      .carousel-dot.active {
-        background: var(--accent);
-      }
-
-      /* BLOCO CATEGORIAS */
+      /* CATEGORIAS EM GRID */
 
       .section-header {
         display: flex;
         align-items: baseline;
         justify-content: space-between;
-        margin: 28px 0 14px;
+        margin: 8px 0 14px;
       }
 
       .section-header h2 {
@@ -380,75 +280,118 @@ const carouselImages = [
       .categories-grid {
         display: grid;
         grid-template-columns: 1fr;
-        gap: 12px;
+        gap: 10px;
       }
 
-      @media (min-width: 640px) {
+      @media (min-width: 700px) {
         .categories-grid {
           grid-template-columns: repeat(2, minmax(0, 1fr));
         }
       }
 
-      @media (min-width: 1024px) {
-        .categories-grid {
-          grid-template-columns: repeat(3, minmax(0, 1fr));
-        }
-      }
-
       .category-card {
-        background: var(--bg-card);
-        border-radius: var(--radius-card);
-        padding: 16px 14px 14px;
+        border-radius: 10px;
         border: 1px solid var(--border-subtle);
-        box-shadow: 0 10px 26px rgba(15, 23, 42, 0.04);
+        padding: 10px 12px;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        gap: 3px;
         font-size: 13px;
       }
 
       .category-name {
         font-size: 14px;
         font-weight: 600;
-        margin-bottom: 4px;
       }
 
       .category-desc {
         font-size: 12px;
         color: var(--text-muted);
-        margin-bottom: 10px;
       }
 
       .category-footer {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
         font-size: 11px;
         color: var(--text-muted);
+        margin-top: 4px;
+        display: flex;
+        justify-content: space-between;
       }
 
       .category-card:hover {
         border-color: var(--accent);
-        box-shadow: 0 18px 40px rgba(14, 165, 233, 0.15);
+      }
+
+      /* CARROSSEL HORIZONTAL NO RODAPÉ DA PÁGINA */
+
+      .carousel-strip {
+        margin-top: 40px;
+        border-top: 1px solid var(--border-subtle);
+        border-bottom: 1px solid var(--border-subtle);
+        padding: 14px 0;
+        overflow: hidden;
+      }
+
+      .carousel-title {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        color: var(--text-muted);
+        margin-bottom: 8px;
+      }
+
+      .carousel-viewport {
+        width: 100%;
+        overflow: hidden;
+      }
+
+      .carousel-track {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        animation: scroll-strip 32s linear infinite;
+      }
+
+      .carousel-item {
+        flex: 0 0 auto;
+        width: 180px;
+        height: 90px;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+
+      .carousel-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      @keyframes scroll-strip {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
       }
 
       /* FOOTER */
 
       footer {
-        border-top: 1px solid var(--border-subtle);
-        background: #ffffff;
         font-size: 11px;
         color: var(--text-muted);
       }
 
       .footer-inner {
-        max-width: 1120px;
+        max-width: var(--max-width);
         margin: 0 auto;
-        padding: 10px 16px 14px;
+        padding: 10px 16px 18px;
         display: flex;
         justify-content: space-between;
-        flex-wrap: wrap;
         gap: 8px;
+        flex-wrap: wrap;
+        border-top: 1px solid var(--border-subtle);
+        margin-top: 18px;
       }
     </style>
   </head>
@@ -498,47 +441,25 @@ const carouselImages = [
           </p>
         </section>
 
-        <!-- INTRO + CARROSSEL LADO A LADO -->
-        <section class="intro-carousel">
-          <article class="intro-card">
-            <h2>With BestSupplementsToday you compare the best supplements for every health goal</h2>
-            <p>
-              At <strong>BestSupplementsToday.com</strong>, we review and compare
-              the best supplements across every major health category — from
-              Weight Loss, Men’s &amp; Women’s Health, and Heart &amp; Circulation
-              to Liver, Gut, Dental, Hearing, and Brain Health.
-            </p>
-            <p>
-              Our editorial team researches <strong>ingredient quality</strong>,
-              <strong>scientific evidence</strong>, and <strong>real user results</strong>
-              to deliver honest supplement reviews you can trust.
-            </p>
-            <p>
-              Each product is independently analyzed for safety, effectiveness, and
-              value — helping you find the top-rated supplements that truly match
-              your goals.
-            </p>
-          </article>
-
-          <aside class="carousel-wrap">
-            <div class="carousel-title">Health &amp; lifestyle snapshots</div>
-            <div class="carousel" data-carousel>
-              {carouselImages.map((img, index) => (
-                <figure
-                  class={`carousel-slide ${index === 0 ? 'active' : ''}`}
-                >
-                  <img src={img.src} alt={img.alt} loading="lazy" />
-                </figure>
-              ))}
-            </div>
-            <div class="carousel-dots" data-carousel-dots>
-              {carouselImages.map((_, index) => (
-                <span
-                  class={`carousel-dot ${index === 0 ? 'active' : ''}`}
-                ></span>
-              ))}
-            </div>
-          </aside>
+        <!-- TEXTO INTRODUTÓRIO -->
+        <section class="intro-text">
+          <h2>With BestSupplementsToday you compare the best supplements for every health goal</h2>
+          <p>
+            At <strong>BestSupplementsToday.com</strong>, we review and compare
+            the best supplements across every major health category — from
+            Weight Loss, Men’s &amp; Women’s Health, and Heart &amp; Circulation
+            to Liver, Gut, Dental, Hearing, and Brain Health.
+          </p>
+          <p>
+            Our editorial team researches <strong>ingredient quality</strong>,
+            <strong> scientific evidence</strong>, and <strong>real user results</strong>
+            to deliver honest supplement reviews you can trust.
+          </p>
+          <p>
+            Each product is independently analyzed for safety, effectiveness, and
+            value — helping you find the top-rated supplements that truly match
+            your goals.
+          </p>
         </section>
 
         <!-- CATEGORIAS EM GRID -->
@@ -556,16 +477,9 @@ const carouselImages = [
           ) : (
             <div class="categories-grid">
               {categoriesInUse.map(([label, config]) => (
-                <a
-                  href={`/categories/${config.slug}`}
-                  class="category-card"
-                >
-                  <div>
-                    <div class="category-name">{label}</div>
-                    <div class="category-desc">
-                      {config.description}
-                    </div>
-                  </div>
+                <a href={`/categories/${config.slug}`} class="category-card">
+                  <div class="category-name">{label}</div>
+                  <div class="category-desc">{config.description}</div>
                   <div class="category-footer">
                     <span>View related reviews</span>
                     <span>›</span>
@@ -574,6 +488,20 @@ const carouselImages = [
               ))}
             </div>
           )}
+        </section>
+
+        <!-- CARROSSEL HORIZONTAL NO RODAPÉ DA PÁGINA -->
+        <section class="carousel-strip">
+          <div class="carousel-title">Health &amp; lifestyle snapshots</div>
+          <div class="carousel-viewport">
+            <div class="carousel-track">
+              {scrollingImages.map((img) => (
+                <div class="carousel-item">
+                  <img src={img.src} alt={img.alt} loading="lazy" />
+                </div>
+              ))}
+            </div>
+          </div>
         </section>
       </main>
 
@@ -584,36 +512,7 @@ const carouselImages = [
         </div>
       </footer>
     </div>
-
-    <!-- Script do carrossel (auto-rotate) -->
-    <script>
-      const carouselEl = document.querySelector('[data-carousel]');
-      const slides = carouselEl
-        ? Array.from(carouselEl.querySelectorAll('.carousel-slide'))
-        : [];
-      const dotsWrapper = document.querySelector('[data-carousel-dots]');
-      const dots = dotsWrapper
-        ? Array.from(dotsWrapper.querySelectorAll('.carousel-dot'))
-        : [];
-
-      if (slides.length > 1) {
-        let current = 0;
-
-        const activate = (index) => {
-          slides.forEach((slide, i) => {
-            slide.classList.toggle('active', i === index);
-          });
-          dots.forEach((dot, i) => {
-            dot.classList.toggle('active', i === index);
-          });
-        };
-
-        setInterval(() => {
-          current = (current + 1) % slides.length;
-          activate(current);
-        }, 4500);
-      }
-    </script>
   </body>
 </html>
+
 
