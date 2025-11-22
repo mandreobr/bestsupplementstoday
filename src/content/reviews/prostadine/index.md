@@ -11,6 +11,39 @@ primaryCtaLabel: "Secure Checkout + Exclusive Bundles"
 primaryCtaUrl: "https://linkly.link/2LziG"
 reviewCategory: "Men’s Health"
 ---
+<header class="mb-10 text-center">
+  <h1
+    class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 leading-tight"
+  >
+    Prostadine Review: A Natural Mineral-Rich Complex for Prostate &amp; Urinary
+    Support
+  </h1>
+
+  <p class="text-lg md:text-xl text-gray-600 font-medium mb-8">
+    Read our comprehensive review of Prostadine, the liquid supplement for
+    prostate and urinary health. Analyze its 9 marine-based ingredients,
+    mechanisms, and safety.
+  </p>
+
+  <div class="my-6 flex flex-col items-center">
+    <a
+      href="https://linkly.link/2LziG"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <img
+        src="/images/prostadine/hero.png"
+        alt="Prostadine dietary supplement bottle – natural drops for prostate health and urinary support"
+        class="hero-image"
+      />
+    </a>
+    <p class="image-caption">
+      Prostadine is a natural liquid supplement designed to support prostate
+      health, urinary comfort, and bladder control.
+    </p>
+  </div>
+</header>
+
 
 <div class="intro-box">
   Explore how Prostadine’s natural OTC supplement supports urinary flow, bladder comfort, and long-term prostate health.

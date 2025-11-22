@@ -1,30 +1,25 @@
-import { defineCollection, z } from "astro:content";
+import { z, defineCollection } from 'astro:content';
 
 const reviews = defineCollection({
-  type: "content",
+  type: 'content',
   schema: z.object({
-    // Texto do topo do review (H1 + intro)
+    // NÃO vamos exigir "slug" aqui – o Astro já gera slug automático
     title: z.string(),
     description: z.string(),
-
-    // SEO
     pageTitle: z.string(),
     metaDescription: z.string(),
 
-    // Slug usado na URL /reviews/[slug]
-    slug: z.string(),
+    heroImage: z.string(),
+    heroAlt: z.string(),
+    heroCaption: z.string(),
 
-    // Campos de hero (opcionais, se você quiser usar depois no layout)
-    heroImage: z.string().optional(),
-    heroAlt: z.string().optional(),
-    heroCaption: z.string().optional(),
-
-    // CTA principal (opcional)
-    primaryCtaLabel: z.string().optional(),
-    primaryCtaUrl: z.string().optional(),
-
-    reviewCategory: z.string().optional(),
+    primaryCtaLabel: z.string(),
+    primaryCtaUrl: z.string(),
+    reviewCategory: z.string(),
   }),
 });
 
-export const collections = { reviews };
+export const collections = {
+  reviews,
+};
+

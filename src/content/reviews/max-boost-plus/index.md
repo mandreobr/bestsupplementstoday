@@ -15,8 +15,38 @@ primaryCtaUrl: "https://linkly.link/2LziG"
 
 reviewCategory: "Men’s Health"
 ---
+<header class="mb-10 text-center">
+  <h1
+    class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 leading-tight"
+  >
+    Max Boost Plus Review: A Natural Complex for Male Vitality &amp; Performance
+  </h1>
 
+  <p class="text-lg md:text-xl text-gray-600 font-medium mb-8">
+    Read our comprehensive review of Max Boost Plus, the natural male vitality
+    supplement that targets sleep, mood, nitric oxide, and circulation with a
+    9-ingredient botanical blend.
+  </p>
 
+  <div class="my-6 flex flex-col items-center">
+    <a
+      href="https://linkly.link/2LziG"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <img
+        src="/images/max-boost-plus/hero.png"
+        alt="Max Boost Plus male vitality supplement – natural formula for erections, libido, energy, and circulation"
+        class="hero-image"
+      />
+    </a>
+    <p class="image-caption">
+      Max Boost Plus is a natural male vitality complex designed to support
+      nitric oxide activity, circulation, sleep quality, mood balance, and
+      sexual confidence.
+    </p>
+  </div>
+</header>
 
 <div class="intro-box">
   Explore how Max Boost Plus’ natural OTC supplement supports nitric oxide activity, circulation, libido, sleep, mood balance, and long-term male vitality.
@@ -176,7 +206,7 @@ reviewCategory: "Men’s Health"
 <!-- LABEL IMAGE -->
 <div class="my-8 flex flex-col items-center">
   <img
-    src="/images/maxboostplus/label.jpg"
+    src="/images/max-boost-plus/label.jpg"
     alt="Max Boost Plus supplement facts and ingredients label"
     class="label-image"
   />
@@ -427,7 +457,7 @@ reviewCategory: "Men’s Health"
 
 <div class="my-8 flex flex-col items-center">
   <img
-    src="/images/maxboostplus/benefits.png"
+    src="/images/max-boost-plus/benefits.png"
     alt="Max Boost Plus bundle – natural male vitality supplement with multi-bottle discounts"
     class="benefits-image"
   />
