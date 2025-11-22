@@ -15,12 +15,9 @@ const { Content } = await entry.render();
 const { data } = entry;
 ---
 
-<head>
-  <title>{data.pageTitle}</title>
-  <meta name="description" content={data.metaDescription} />
-</head>
-
 <FullReviewLayout
+  pageTitle={data.pageTitle}
+  metaDescription={data.metaDescription}
   title={data.title}
   description={data.description}
   heroImage={data.heroImage}
@@ -31,6 +28,4 @@ const { data } = entry;
 >
   <Content />
 </FullReviewLayout>
-
-
 

@@ -1,15 +1,24 @@
 ---
 interface Props {
-  title: string;
-  description: string;
+  // SEO
+  pageTitle: string;
+  metaDescription: string;
+
+  // Hero / conteúdo
+  title: string;          // H1 da página
+  description: string;    // subheadline abaixo do H1
+
   heroImage?: string;
   heroAlt?: string;
   heroCaption?: string;
-  primaryCtaLabel?: string;
-  primaryCtaUrl?: string;
+
+  primaryCtaLabel?: string; // texto da faixa azul do rodapé
+  primaryCtaUrl?: string;   // link do botão principal
 }
 
 const {
+  pageTitle,
+  metaDescription,
   title,
   description,
   heroImage,
@@ -25,8 +34,12 @@ const {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{title}</title>
-  <meta name="description" content={description} />
+
+  <!-- SEO -->
+  <title>{pageTitle}</title>
+  <meta name="description" content={metaDescription} />
+
+  <!-- Favicon -->
   <link rel="icon" href="/favicon-bst.png" type="image/png" sizes="32x32" />
 
   <!-- Tailwind CDN + Inter font -->
@@ -75,6 +88,7 @@ const {
       padding: 1rem 0;
     }
 
+    /* Texto padronizado (igual Prostadine) */
     .markdown-prose p:not(.image-caption) {
       margin-bottom: 1.5rem;
       font-size: 1.0625rem;
@@ -277,6 +291,7 @@ const {
       white-space: nowrap;
     }
 
+    /* IMAGENS */
     .hero-image,
     .label-image,
     .benefits-image {
@@ -336,6 +351,82 @@ const {
       text-decoration: underline;
     }
 
+    /* HEADER igual Prostadine */
+    .site-header {
+      background-color: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+    }
+    .site-header-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .site-logo {
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: #2563eb;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+    .site-nav {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+    .site-nav a {
+      color: #4b5563;
+      text-decoration: none;
+    }
+    .site-nav a:hover {
+      color: #2563eb;
+    }
+
+    /* FINAL VERDICT CARD */
+    .final-verdict {
+      background-color: #eff6ff;
+      border: 1px solid #2563eb;
+      border-radius: 0.9rem;
+      padding: 2.25rem 1.75rem;
+      margin: 2.5rem 0 2.75rem;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.1);
+    }
+    .final-verdict-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      text-align: center;
+      color: #111827;
+      margin-bottom: 1rem;
+    }
+    @media (min-width: 768px) {
+      .final-verdict-title {
+        font-size: 1.9rem;
+      }
+    }
+    .final-verdict-divider {
+      width: 60%;
+      max-width: 420px;
+      height: 1px;
+      background-color: #2563eb;
+      margin: 0 auto 1.3rem;
+    }
+    .markdown-prose .final-verdict-body {
+      margin-bottom: 0;
+      font-size: 1.02rem;
+      line-height: 1.8;
+      text-align: left;
+      color: #111827;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* FOOTER CTA azul */
     .footer-cta {
       background-color: #2563eb;
       color: #ffffff;
@@ -381,6 +472,7 @@ const {
       opacity: 0.9;
     }
 
+    /* OVERLAY LABEL (para quem usar .label-image) */
     #label-overlay {
       position: fixed;
       inset: 0;
@@ -398,46 +490,6 @@ const {
       border-radius: 0.5rem;
       box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
       background: #fff;
-    }
-
-    .site-header {
-      background-color: #ffffff;
-      border-bottom: 1px solid #e5e7eb;
-      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
-    }
-
-    .site-header-inner {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 1rem 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .site-logo {
-      font-size: 1.1rem;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      color: #2563eb;
-      text-transform: uppercase;
-      text-decoration: none;
-    }
-
-    .site-nav {
-      display: flex;
-      gap: 1.5rem;
-      font-size: 0.95rem;
-      font-weight: 500;
-    }
-
-    .site-nav a {
-      color: #4b5563;
-      text-decoration: none;
-    }
-
-    .site-nav a:hover {
-      color: #2563eb;
     }
   </style>
 </head>
@@ -460,7 +512,7 @@ const {
   <main class="flex-grow">
     <div class="review-shell">
       <article class="review-card">
-        <!-- HERO -->
+        <!-- HERO DINÂMICO -->
         <header class="mb-10 text-center">
           <h1
             class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 leading-tight"
@@ -474,17 +526,11 @@ const {
 
           {heroImage && (
             <div class="my-6 flex flex-col items-center">
-              <a
-                href={primaryCtaUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  src={heroImage}
-                  alt={heroAlt || `Product image for ${title}`}
-                  class="hero-image"
-                />
-              </a>
+              <img
+                src={heroImage}
+                alt={heroAlt || title}
+                class="hero-image"
+              />
               {heroCaption && (
                 <p class="image-caption">
                   {heroCaption}
@@ -494,25 +540,28 @@ const {
           )}
         </header>
 
-        <!-- CONTEÚDO DO REVIEW (vem do .md) -->
+        <!-- CONTEÚDO DO REVIEW (markdown) -->
         <section class="markdown-prose">
           <slot />
         </section>
       </article>
     </div>
+
+    <!-- OVERLAY PARA ZOOM DA LABEL (se usado na página) -->
+    <div id="label-overlay">
+      <img src="" alt="Expanded supplement label" />
+    </div>
   </main>
 
-  <!-- OVERLAY PARA ZOOM DA LABEL -->
-  <div id="label-overlay">
-    <img src="" alt="Expanded supplement ingredients label" />
-  </div>
-
-  <!-- FOOTER CTA GLOBAL -->
+  <!-- FOOTER CTA: usa o CTA principal do produto -->
   <footer class="footer-cta">
     <div class="footer-cta-inner">
-      <h3 class="footer-cta-title">
-        {primaryCtaLabel || "Secure Checkout + Exclusive Bundles"}
-      </h3>
+      {primaryCtaLabel && (
+        <h3 class="footer-cta-title">
+          {primaryCtaLabel}
+        </h3>
+      )}
+
       {primaryCtaUrl && (
         <a
           href={primaryCtaUrl}
@@ -523,13 +572,15 @@ const {
           Visit Official Website
         </a>
       )}
+
       <p class="footer-cta-copy">
-        © 2025 Best Supplements Today. All rights reserved.
+        © {new Date().getFullYear()} Best Supplements Today. All rights reserved.
       </p>
     </div>
   </footer>
 
-  {primaryCtaUrl && primaryCtaLabel && (
+  <!-- CTA fixo mobile (usa o mesmo link) -->
+  {primaryCtaUrl && (
     <div
       class="fixed bottom-0 left-0 right-0 p-4 bg-white shadow-[0_-5px_15px_rgba(0,0,0,0.1)] z-20 md:hidden"
     >
@@ -544,6 +595,7 @@ const {
     </div>
   )}
 
+  <!-- SCRIPT para expandir/fechar a imagem do rótulo -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const labelImg = document.querySelector(".label-image");
