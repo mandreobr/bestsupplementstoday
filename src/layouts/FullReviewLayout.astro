@@ -13,7 +13,7 @@ const {
   title,
   description,
   heroImage,
-  heroAlt = `Product image for ${title}`,
+  heroAlt,
   heroCaption,
   primaryCtaLabel,
   primaryCtaUrl,
@@ -27,9 +27,8 @@ const {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title}</title>
   <meta name="description" content={description} />
-  <link rel="icon" href="/favicon-bst.png" type="image/png" sizes="32x32" />
 
-  <!-- Tailwind via CDN + fonte Inter -->
+  <!-- Tailwind + Inter -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -38,6 +37,8 @@ const {
     rel="stylesheet"
   />
 
+  <link rel="icon" href="/favicon-bst.png" type="image/png" sizes="32x32" />
+
   <style>
     body {
       font-family: "Inter", sans-serif;
@@ -45,8 +46,12 @@ const {
       background-color: #f3f4f6;
     }
 
-    .text-primary { color: #2563eb; }
-    .border-primary { border-color: #2563eb; }
+    .text-primary {
+      color: #2563eb;
+    }
+    .border-primary {
+      border-color: #2563eb;
+    }
 
     .review-shell {
       max-width: 960px;
@@ -71,7 +76,7 @@ const {
       padding: 1rem 0;
     }
 
-    /* texto principal JUSTIFICADO – igual Prostadine */
+    /* NÃO aplica ao .image-caption */
     .markdown-prose p:not(.image-caption) {
       margin-bottom: 1.5rem;
       font-size: 1.0625rem;
@@ -86,7 +91,7 @@ const {
       margin-top: 3rem;
       margin-bottom: 1.25rem;
       padding-bottom: 0.4rem;
-      border-bottom: 3px solid #2563eb; /* linha azul separadora */
+      border-bottom: 3px solid #2563eb;
     }
 
     .markdown-prose h3 {
@@ -103,11 +108,38 @@ const {
       margin-bottom: 1.5rem;
       font-size: 1.02rem;
     }
-    .markdown-prose ul { list-style: disc; }
-    .markdown-prose ol { list-style: decimal; }
+    .markdown-prose ul {
+      list-style: disc;
+    }
+    .markdown-prose ol {
+      list-style: decimal;
+    }
     .markdown-prose ul li,
     .markdown-prose ol li {
       margin-bottom: 0.4rem;
+    }
+
+    .cta-block {
+      text-align: center;
+      margin: 3rem auto;
+      max-width: 550px;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 0.95rem 2.75rem;
+      background-color: #2563eb;
+      color: #ffffff;
+      font-weight: 800;
+      border-radius: 0.9rem;
+      transition: all 0.25s ease;
+      box-shadow: 0 12px 25px rgba(37, 99, 235, 0.45);
+    }
+
+    .btn-primary:hover {
+      background-color: #1d4ed8;
+      transform: translateY(-1px);
+      box-shadow: 0 18px 35px rgba(37, 99, 235, 0.6);
     }
 
     .intro-box {
@@ -123,50 +155,6 @@ const {
       text-align: justify;
     }
 
-    /* CTA genérico – estiliza QUALQUER link da Linkly como botão centralizado */
-    .markdown-prose p a[href*="linkly.link"] {
-      display: inline-block;
-      margin-top: 0.5rem;
-      padding: 0.95rem 2.75rem;
-      background-color: #2563eb;
-      color: #ffffff;
-      font-weight: 800;
-      border-radius: 0.9rem;
-      text-decoration: none;
-      box-shadow: 0 12px 25px rgba(37, 99, 235, 0.45);
-      transition: all 0.25s ease;
-    }
-
-    .markdown-prose p a[href*="linkly.link"]:hover {
-      background-color: #1d4ed8;
-      transform: translateY(-1px);
-      box-shadow: 0 18px 35px rgba(37, 99, 235, 0.6);
-    }
-
-    /* centraliza o parágrafo que contém o botão */
-    .markdown-prose p:has(a[href*="linkly.link"]) {
-      text-align: center;
-    }
-
-    /* imagens dentro do conteúdo – proporcionais e centralizadas */
-    .markdown-prose img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-      margin: 1.75rem auto 0.5rem;
-    }
-
-    /* trata parágrafo com <em> sozinho logo após imagem como CAPTION */
-    .markdown-prose p > em:only-child {
-      display: block;
-      font-size: 0.8rem;
-      color: #6b7280;
-      margin-top: 0.25rem;
-      text-align: center;
-      font-style: italic;
-    }
-
-    /* bloco Pros & Cons se você usar divs com essas classes no markdown (opcional) */
     .pros-cons-title {
       margin-top: 3rem;
       margin-bottom: 0.75rem;
@@ -212,7 +200,6 @@ const {
       line-height: 1.65;
     }
 
-    /* tabela de preços – se você usar <table> no markdown */
     .pricing-table-container {
       overflow-x: auto;
       margin-top: 2.25rem;
@@ -257,18 +244,22 @@ const {
       background-color: #eff6ff;
     }
 
-    /* imagens do HERO com proporção igual ao Prostadine */
-    .hero-image {
-      max-width: 100%;
-      height: auto;
-      display: block;
-      margin: 0 auto;
-      border-radius: 0;
-      box-shadow: none;
-      border: none;
-      object-fit: contain;
-      background-color: transparent;
-      max-height: 340px;
+    .ingredient-card-list {
+      display: grid;
+      gap: 0.9rem;
+      margin-top: 0.75rem;
+    }
+    .ingredient-card {
+      padding: 1rem 1.1rem;
+      background-color: #f5f8ff;
+      border-radius: 0.75rem;
+      border: 1px solid #e0e7ff;
+    }
+    .ingredient-card h3 {
+      margin-top: 0 !important;
+      margin-bottom: 0.3rem;
+      font-size: 1.05rem;
+      font-weight: 700;
     }
 
     .tag-container {
@@ -288,12 +279,140 @@ const {
       white-space: nowrap;
     }
 
-    /* HEADER estilo site */
+    /* IMAGENS */
+    .hero-image,
+    .label-image,
+    .benefits-image {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      border-radius: 0;
+      box-shadow: none;
+      border: none;
+      object-fit: contain;
+      background-color: transparent;
+    }
+    .hero-image {
+      max-height: 340px;
+    }
+    .label-image {
+      max-height: 360px;
+      cursor: zoom-in;
+    }
+    .benefits-image {
+      max-height: 320px;
+    }
+
+    .image-caption {
+      font-size: 0.75rem;
+      color: #6b7280;
+      margin-top: 0.5rem;
+      text-align: center;
+      font-style: italic;
+    }
+
+    /* link "read full ingredients list" */
+    .ingredients-link-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-top: 0.6rem;
+      margin-bottom: 2rem;
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+    .ingredients-link-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 9999px;
+      border: 2px solid #2563eb;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .ingredients-link-icon span {
+      font-size: 0.9rem;
+      color: #2563eb;
+    }
+    .ingredients-link-row a {
+      color: #2563eb;
+      text-decoration: underline;
+    }
+
+    /* FOOTER CTA */
+    .footer-cta {
+      background-color: #2563eb;
+      color: #ffffff;
+      margin-top: 3rem;
+    }
+    .footer-cta-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2.5rem 1rem;
+      text-align: center;
+    }
+    .footer-cta-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+    @media (min-width: 768px) {
+      .footer-cta-title {
+        font-size: 1.9rem;
+      }
+    }
+    .footer-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1.25rem;
+      margin-bottom: 1.25rem;
+      padding: 0.9rem 2.75rem;
+      border-radius: 9999px;
+      border: 2px solid #ffffff;
+      background-color: #1d4ed8;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+    .footer-cta-btn:hover {
+      background-color: #1e40af;
+      transform: translateY(-1px);
+    }
+    .footer-cta-copy {
+      font-size: 0.78rem;
+      opacity: 0.9;
+    }
+
+    /* OVERLAY LABEL */
+    #label-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      padding: 1.5rem;
+      backdrop-filter: blur(3px);
+    }
+    #label-overlay img {
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: 0.5rem;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+      background: #fff;
+    }
+
+    /* HEADER igual ao Prostadine */
     .site-header {
       background-color: #ffffff;
       border-bottom: 1px solid #e5e7eb;
       box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
     }
+
     .site-header-inner {
       max-width: 1120px;
       margin: 0 auto;
@@ -302,6 +421,7 @@ const {
       align-items: center;
       justify-content: space-between;
     }
+
     .site-logo {
       font-size: 1.1rem;
       font-weight: 800;
@@ -310,18 +430,64 @@ const {
       text-transform: uppercase;
       text-decoration: none;
     }
+
     .site-nav {
       display: flex;
       gap: 1.5rem;
       font-size: 0.95rem;
       font-weight: 500;
     }
+
     .site-nav a {
       color: #4b5563;
       text-decoration: none;
     }
+
     .site-nav a:hover {
       color: #2563eb;
+    }
+
+    /* FINAL VERDICT */
+    .final-verdict {
+      background-color: #eff6ff;
+      border: 1px solid #2563eb;
+      border-radius: 0.9rem;
+      padding: 2.25rem 1.75rem;
+      margin: 2.5rem 0 2.75rem;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.1);
+    }
+
+    .final-verdict-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      text-align: center;
+      color: #111827;
+      margin-bottom: 1rem;
+    }
+
+    @media (min-width: 768px) {
+      .final-verdict-title {
+        font-size: 1.9rem;
+      }
+    }
+
+    .final-verdict-divider {
+      width: 60%;
+      max-width: 420px;
+      height: 1px;
+      background-color: #2563eb;
+      margin: 0 auto 1.3rem;
+    }
+
+    .markdown-prose .final-verdict-body {
+      margin-bottom: 0;
+      font-size: 1.02rem;
+      line-height: 1.8;
+      text-align: left;
+      color: #111827;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
     }
   </style>
 </head>
@@ -333,6 +499,7 @@ const {
       <a href="/" class="site-logo">
         BEST SUPPLEMENTS TODAY
       </a>
+
       <nav class="site-nav">
         <a href="/">Home</a>
         <a href="/reviews">Reviews</a>
@@ -357,14 +524,17 @@ const {
 
           {heroImage && (
             <div class="my-6 flex flex-col items-center">
-              {primaryCtaUrl ? (
-                <a href={primaryCtaUrl} target="_blank" rel="noopener noreferrer">
-                  <img src={heroImage} alt={heroAlt} class="hero-image" />
-                </a>
-              ) : (
-                <img src={heroImage} alt={heroAlt} class="hero-image" />
-              )}
-
+              <a
+                href={primaryCtaUrl ?? "#"}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src={heroImage}
+                  alt={heroAlt ?? `Product image for ${title}`}
+                  class="hero-image"
+                />
+              </a>
               {heroCaption && (
                 <p class="image-caption">
                   {heroCaption}
@@ -374,44 +544,43 @@ const {
           )}
         </header>
 
-        <!-- CONTEÚDO DO REVIEW VINDO DO .MD -->
+        <!-- CONTEÚDO DO REVIEW (do .md) -->
         <section class="markdown-prose">
           <slot />
         </section>
       </article>
     </div>
-
-    {primaryCtaUrl && primaryCtaLabel && (
-      <section class="bg-[#2563eb] text-white mt-8">
-        <div class="max-w-5xl mx-auto px-4 py-8 text-center">
-          <h3 class="text-2xl md:text-3xl font-extrabold mb-4">
-            {primaryCtaLabel}
-          </h3>
-          <a
-            href={primaryCtaUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-block py-3 px-10 bg-[#1d4ed8] text-white text-lg font-extrabold rounded-full shadow-2xl transition duration-300 transform hover:scale-105 hover:bg-[#1e40af]"
-            style="border: 2px solid white;"
-          >
-            VISIT OFFICIAL WEBSITE NOW
-          </a>
-        </div>
-      </section>
-    )}
   </main>
 
-  <footer class="bg-gray-800 text-white py-6 mt-12">
-    <div class="max-w-5xl mx-auto px-4 text-center text-sm">
-      <p>&copy; {new Date().getFullYear()} Best Supplements Today. All rights reserved.</p>
-      <div class="mt-2 space-x-4">
-        <a href="/privacy" class="hover:text-[#2563eb]">Privacy Policy</a>
-        <a href="/terms" class="hover:text-[#2563eb]">Terms of Use</a>
-      </div>
-    </div>
-  </footer>
+  <!-- OVERLAY LABEL (caso o conteúdo use .label-image) -->
+  <div id="label-overlay">
+    <img src="" alt="Expanded supplement label" />
+  </div>
 
+  <!-- FOOTER CTA global (usa primaryCtaLabel/Url) -->
   {primaryCtaUrl && primaryCtaLabel && (
+    <footer class="footer-cta">
+      <div class="footer-cta-inner">
+        <h3 class="footer-cta-title">
+          {primaryCtaLabel}
+        </h3>
+        <a
+          href={primaryCtaUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="footer-cta-btn"
+        >
+          Visit Official Website
+        </a>
+        <p class="footer-cta-copy">
+          © {new Date().getFullYear()} Best Supplements Today. All rights reserved.
+        </p>
+      </div>
+    </footer>
+  )}
+
+  <!-- CTA fixo mobile -->
+  {primaryCtaUrl && (
     <div
       class="fixed bottom-0 left-0 right-0 p-4 bg-white shadow-[0_-5px_15px_rgba(0,0,0,0.1)] z-20 md:hidden"
     >
@@ -425,5 +594,24 @@ const {
       </a>
     </div>
   )}
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const labelImg = document.querySelector(".label-image");
+      const overlay = document.getElementById("label-overlay");
+      const overlayImg = overlay ? overlay.querySelector("img") : null;
+
+      if (labelImg && overlay && overlayImg) {
+        labelImg.addEventListener("click", () => {
+          overlayImg.src = labelImg.src;
+          overlay.style.display = "flex";
+        });
+
+        overlay.addEventListener("click", () => {
+          overlay.style.display = "none";
+        });
+      }
+    });
+  </script>
 </body>
 </html>
