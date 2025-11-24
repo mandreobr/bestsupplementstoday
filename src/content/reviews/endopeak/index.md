@@ -702,7 +702,3 @@ reviewCategory: "Men’s Health"
 </div>
 
 
-<footer class="site-footer text-center mt-10 text-sm text-gray-500">
-
-  © 2025 Best Supplements Today. All rights reserved.
-</footer>
