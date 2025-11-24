@@ -199,11 +199,17 @@ reviewCategory: "Men’s Health"
 
 <!-- LABEL IMAGE -->
 <div class="my-8 flex flex-col items-center">
-  <img
-    src="/images/flowforce-max/label.jpg"
-    alt="FlowForce Max supplement facts and ingredients label featuring flower pollen extract, saw palmetto, ViNitrox, luteolin, fisetin, and monolaurin"
-    class="label-image"
-  />
+  <a
+    href="/images/flowforce-max/label.jpg"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <img
+      src="/images/flowforce-max/label.jpg"
+      alt="FlowForce Max supplement facts and ingredients label featuring flower pollen extract, saw palmetto, ViNitrox, luteolin, fisetin, and monolaurin"
+      class="label-image"
+    />
+  </a>
   <p class="image-caption">
     The FlowForce Max label highlights a blend of flower pollen extract, flavonoids, polyphenols, and antimicrobial agents for comprehensive prostate and urinary support.
   </p>
