@@ -16,7 +16,6 @@ heroAlt: "FlowForce Max chewable supplement – natural formula for prostate hea
 heroCaption: "FlowForce Max is a natural chewable supplement designed to support prostate comfort, urinary flow, microbial balance, and daily vitality."
 
 primaryCtaLabel: "Secure Checkout + Exclusive Bundles"
-
 primaryCtaUrl: "https://linkly.link/2R1gT"
 
 reviewCategory: "Men’s Health"
@@ -185,7 +184,7 @@ footerText: "© 2025 Best Supplements Today. All rights reserved."
   <strong>Additional Supportive Ingredients:</strong> FlowForce Max also contains supportive compounds such as oregano extract, grape seed extract, Muira puama, tricalcium phosphate, peppermint extract, silk protein, magnesium stearate, perilla leaf extract, and sucralose. Several of these (for example, oregano and grape seed) possess documented antioxidant or antimicrobial properties, further strengthening the formula’s multi-pathway design.
 </p>
 
-<!-- LINK "CLICK HERE TO READ FULL INGREDIENTS LIST" -->
+<!-- LINK — FULL INGREDIENT LIST -->
 <div class="ingredients-link-row" style="margin-bottom: 2rem;">
   <div class="ingredients-link-icon">
     <span>&rarr;</span>
@@ -641,12 +640,3 @@ Saw palmetto has an extensive evidence base for supporting urinary flow and comf
     <span class="tag-item">perilla leaf extract</span>
   </div>
 </div>
-
-footerCtaLabel: "Secure Checkout + Exclusive Bundles"
-footerCtaUrl: "https://linkly.link/2R1gT"
-footerText: "© 2025 Best Supplements Today. All rights reserved."
-
-
-
-
-
