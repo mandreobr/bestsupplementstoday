@@ -1,237 +1,419 @@
 ---
 ---
-<!DOCTYPE html>
-<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Explore Our Categories</title>
+  <!-- SEO básico -->
+  <title>Supplement Review Categories | Best Supplements Today</title>
+  <meta
+    name="description"
+    content="Explore all supplement review categories on Best Supplements Today, including weight loss, brain and neuro health, men’s and women’s health, heart, gut, blood sugar, skin, and more."
+  />
+  <link rel="canonical" href="https://www.bestsupplementstoday.com/reviews" />
+  <meta name="robots" content="index,follow" />
 
-  <!-- Tailwind -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Supplement Review Categories | Best Supplements Today" />
+  <meta
+    property="og:description"
+    content="Browse all supplement review categories including weight loss, brain and neuro, men’s and women’s health, heart, gut, blood sugar, skin, and more."
+  />
+  <meta property="og:url" content="https://www.bestsupplementstoday.com/reviews" />
+  <meta property="og:site_name" content="Best Supplements Today" />
 
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            "primary-blue": "#1e3a8a",
-            "secondary-green": "#10b981",
-            "tertiary-red": "#ef4444",
-            "bg-light": "#f9fafb",
-            "card-bg": "#ffffff",
-            "text-primary": "#1f2937",
-          },
-          fontFamily: {
-            sans: ["Inter", "sans-serif"],
-          },
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Supplement Review Categories | Best Supplements Today" />
+  <meta
+    name="twitter:description"
+    content="Explore all supplement review categories on Best Supplements Today, including weight loss, brain, heart, gut and more."
+  />
+
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico" />
+
+  <!-- BreadcrumbList JSON-LD -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.bestsupplementstoday.com/"
         },
-      },
-    };
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Reviews",
+          "item": "https://www.bestsupplementstoday.com/reviews"
+        }
+      ]
+    }
   </script>
-
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-
-  <style>
-    .category-card {
-      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-    }
-    .category-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 15px -3px rgba(30, 58, 138, 0.1), 
-                  0 4px 6px -2px rgba(30, 58, 138, 0.05);
-      border-color: #1e3a8a;
-    }
-  </style>
-
 </head>
 
-<body class="bg-bg-light font-sans text-text-primary">
-
+<section class="categories-page">
   <!-- HEADER -->
-  <header class="bg-white shadow-md">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-      <div class="text-xl font-bold text-primary-blue uppercase tracking-widest">
-        Best Supplements Today
+  <header class="page-header">
+    <div class="header-inner">
+      <div class="site-title">
+        <a href="/">Best Supplements Today</a>
       </div>
-      <nav class="space-x-4">
-        <a href="/" class="text-gray-600 hover:text-primary-blue font-semibold transition">Home</a>
+      <nav class="header-nav">
+        <a href="/">Home</a>
       </nav>
     </div>
   </header>
 
   <!-- MAIN -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+  <main class="page-main">
+    <div class="page-box">
+      <!-- INTRO -->
+      <div class="intro">
+        <h1>Explore Our Categories</h1>
+        <p>Find what you're looking for in health and wellness. Click on a category to view articles.</p>
+      </div>
 
-    <div class="text-center mb-10">
-      <h1 class="text-4xl sm:text-5xl font-extrabold text-primary-blue mb-4">
-        Explore Our Categories
-      </h1>
-      <p class="text-lg text-gray-500 max-w-2xl mx-auto">
-        Find what you're looking for in health and wellness. Click on a category to view articles.
-      </p>
-    </div>
+      <!-- GRID -->
+      <div class="categories-grid">
+        <!-- WEIGHT LOSS -->
+        <a href="/reviews/weight-loss" class="category-card">
+          <div class="icon-wrapper">
+            <svg viewBox="0 0 24 24">
+              <path d="m20 17-6-6-4 4-8-8" />
+              <path d="M14 17h6V11" />
+            </svg>
+          </div>
+          <h2>Weight Loss and Fat Burn</h2>
+          <p>Tips and analysis on weight management and fat burning supplements.</p>
+          <span class="card-link">View Articles →</span>
+        </a>
 
-    <!-- GRID -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <!-- BRAIN (NOVO ÍCONE CÉREBRO) -->
+        <a href="/reviews/brain-and-neuro" class="category-card">
+          <div class="icon-wrapper">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M10 4a3 3 0 0 0-3 3 3 3 0 0 0-2 5v3a3 3 0 0 0 3 3"
+              />
+              <path
+                d="M14 4a3 3 0 0 1 3 3 3 3 0 0 1 2 5v3a3 3 0 0 1-3 3"
+              />
+              <path d="M10 8H9a2 2 0 0 0-2 2 2 2 0 0 0 2 2h1" />
+              <path d="M14 8h1a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-1" />
+            </svg>
+          </div>
+          <h2>Brain and Neuro Health</h2>
+          <p>Focus on cognition, memory, and nervous system support.</p>
+          <span class="card-link">View Articles →</span>
+        </a>
 
+        <!-- MEN (ÍCONE MARTE) -->
+        <a href="/reviews/men-health" class="category-card">
+          <div class="icon-wrapper">
+            <svg viewBox="0 0 24 24">
+              <circle cx="9" cy="15" r="6" />
+              <path d="M15 9l6-6" />
+              <path d="M15 3h6v6" />
+            </svg>
+          </div>
+          <h2>Men's Health</h2>
+          <p>Specific information and reviews for men's physical well-being.</p>
+          <span class="card-link">View Articles →</span>
+        </a>
 
-      <!-- CATEGORY CARD (REPETIDO PARA TODAS AS CATEGORIAS) -->
-      <!-- Weight Loss -->
-      <a href="/reviews/weight-loss" class="category-card flex flex-col items-start p-6 bg-card-bg rounded-xl shadow-lg border border-gray-100">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-primary-blue mb-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path d="m20 17-6-6-4 4-8-8"/>
-          <path d="M14 17h6V11"/>
-        </svg>
-        <h2 class="text-xl font-bold text-primary-blue mb-2">Weight Loss and Fat Burn</h2>
-        <p class="text-sm text-gray-500">Tips and analysis on fat burning supplements.</p>
-        <span class="mt-4 text-sm font-semibold text-primary-blue flex items-center">View Articles →</span>
-      </a>
+        <!-- WOMEN (ÍCONE VÊNUS) -->
+        <a href="/reviews/women-health" class="category-card">
+          <div class="icon-wrapper">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="8" r="6" />
+              <path d="M12 14v6" />
+              <path d="M9 20h6" />
+            </svg>
+          </div>
+          <h2>Women's Health</h2>
+          <p>Specific information and reviews for women's physical well-being.</p>
+          <span class="card-link">View Articles →</span>
+        </a>
 
+        <!-- HEART -->
+        <a href="/reviews/heart-and-circulation" class="category-card">
+          <div class="icon-wrapper">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M19 14c1.5-1.5 3-3.2 3-6.5C22 3.5 19.5 2 17 2a5 5 0 0 0-5 3.2A5 5 0 0 0 7 2C4.5 2 2 3.5 2 7.5c0 3.27 1.5 5 3 6.5l7 7 7-7z"
+              />
+            </svg>
+          </div>
+          <h2>Circulation and Heart Health</h2>
+          <p>Cardiovascular health and improving blood flow.</p>
+          <span class="card-link">View Articles →</span>
+        </a>
 
-      <!-- Brain & Neuro -->
-      <a href="/reviews/brain-and-neuro" class="category-card flex flex-col items-start p-6 bg-card-bg rounded-xl shadow-lg border border-gray-100">
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" stroke="currentColor" class="w-8 h-8 text-primary-blue mb-4">
-          <path d="M12 2a8 8 0 00-8 8 8 8 0 004 6.92V22h8v-5.08A8 8 0 0020 10a8 8 0 00-8-8z"/>
-          <circle cx="9" cy="13" r="3"/>
-          <circle cx="15" cy="13" r="3"/>
-        </svg>
-        <h2 class="text-xl font-bold text-primary-blue mb-2">Brain and Neuro Health</h2>
-        <p class="text-sm text-gray-500">Cognition, memory & nervous system support.</p>
-        <span class="mt-4 text-sm font-semibold text-primary-blue flex items-center">View Articles →</span>
-      </a>
+        <!-- LIVER -->
+        <a href="/reviews/liver-and-gut" class="category-card">
+          <div class="icon-wrapper">
+            <svg viewBox="0 0 24 24">
+              <path d="M3 10s2-4 7-4 7 4 11 4c0 6-4 8-10 8S3 16 3 10Z" />
+            </svg>
+          </div>
+          <h2>Liver and Gut Health</h2>
+          <p>Digestive health, gut flora, and liver function support.</p>
+          <span class="card-link">View Articles →</span>
+        </a>
 
+        <!-- DENTAL (NOVO ÍCONE DENTE) -->
+        <a href="/reviews/dental-health" class="category-card">
+          <div class="icon-wrapper">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M8 2C6.5 2 5 3.3 5 5.5 5 8 5.5 10 6 12s1 4 2 4 1.7-1.8 2.3-3.5C11 11 11.5 10 12 10s1 .9 1.7 2.5C14.3 14.2 15 16 16 16s1.8-2 2.3-4 1-4 1-6.5C19.3 3.3 18 2 16.5 2c-1.3 0-2.1.6-2.8 1.1C13.1 2.6 12.4 2 11.5 2S9.9 2.6 9.3 3.1C8.6 2.6 7.8 2 6.5 2H8Z"
+              />
+            </svg>
+          </div>
+          <h2>Dental Health</h2>
+          <p>Care for teeth, gums, and oral hygiene.</p>
+          <span class="card-link">View Articles →</span>
+        </a>
 
-      <!-- Men's Health -->
-      <a href="/reviews/men-health" class="category-card flex flex-col items-start p-6 bg-card-bg rounded-xl shadow-lg border border-gray-100">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" class="w-8 h-8 text-primary-blue mb-4" viewBox="0 0 24 24">
-          <circle cx="12" cy="8" r="5"/>
-          <path d="M20 21a8 8 0 00-16 0"/>
-        </svg>
-        <h2 class="text-xl font-bold text-primary-blue mb-2">Men's Health</h2>
-        <p class="text-sm text-gray-500">Vitality, performance & hormones support.</p>
-        <span class="mt-4 text-sm font-semibold text-primary-blue flex items-center">View Articles →</span>
-      </a>
+        <!-- HEARING/VISION -->
+        <a href="/reviews/hearing-and-vision" class="category-card">
+          <div class="icon-wrapper">
+            <svg viewBox="0 0 24 24">
+              <path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z" />
+              <circle cx="12" cy="12" r="3" />
+            </svg>
+          </div>
+          <h2>Hearing and Vision</h2>
+          <p>Enhancement and protection of hearing and eyesight.</p>
+          <span class="card-link">View Articles →</span>
+        </a>
 
+        <!-- JOINT/MUSCLE -->
+        <a href="/reviews/pain-joint-muscle" class="category-card">
+          <div class="icon-wrapper">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10" />
+              <circle cx="12" cy="12" r="6" />
+              <circle cx="12" cy="12" r="2" />
+            </svg>
+          </div>
+          <h2>Pain, Joint and Muscle</h2>
+          <p>Pain relief, joint mobility, and muscle recovery.</p>
+          <span class="card-link">View Articles →</span>
+        </a>
 
-      <!-- Women's Health -->
-      <a href="/reviews/women-health" class="category-card flex flex-col items-start p-6 bg-card-bg rounded-xl shadow-lg border border-gray-100">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" class="w-8 h-8 text-primary-blue mb-4" viewBox="0 0 24 24">
-          <circle cx="12" cy="7" r="4"/>
-          <path d="M14.5 16.5s-2.5 2.5-5 0"/>
-          <path d="M2 21a10 10 0 0120 0"/>
-        </svg>
-        <h2 class="text-xl font-bold text-primary-blue mb-2">Women's Health</h2>
-        <p class="text-sm text-gray-500">Well-being & balanced health for women.</p>
-        <span class="mt-4 text-sm font-semibold text-primary-blue flex items-center">View Articles →</span>
-      </a>
+        <!-- BLOOD SUGAR -->
+        <a href="/reviews/blood-suggar" class="category-card">
+          <div class="icon-wrapper">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 2.69l5.66 5.66c3.15 3.15 3.15 8.28 0 11.43-3.15 3.15-8.28 3.15-11.43 0-3.15-3.15-3.15-8.28 0-11.43z"
+              />
+            </svg>
+          </div>
+          <h2>Blood Suggar Control</h2>
+          <p>Regulation of blood sugar levels and metabolic health.</p>
+          <span class="card-link">View Articles →</span>
+        </a>
 
+        <!-- SKIN/HAIR -->
+        <a href="/reviews/skin-hair-aging" class="category-card">
+          <div class="icon-wrapper">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M12 16c2 0 3-2 3-4s-1-4-3-4-3 2-3 4 1 4 3 4Z" />
+            </svg>
+          </div>
+          <h2>Skin, Hair and Anti-Aging</h2>
+          <p>Dermatology, cosmetic reviews, and anti-aging advice.</p>
+          <span class="card-link">View Articles →</span>
+        </a>
 
-      <!-- Heart -->
-      <a href="/reviews/heart-and-circulation" class="category-card flex flex-col items-start p-6 bg-card-bg rounded-xl shadow-lg border border-gray-100">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" class="w-8 h-8 text-primary-blue mb-4" viewBox="0 0 24 24">
-          <path d="M19 14c1.5-1.5 3-3.2 3-6.5C22 3.5 19.5 2 17 2a5 5 0 00-5 3.2A5 5 0 007 2C4.5 2 2 3.5 2 7.5c0 3.27 1.5 5 3 6.5l7 7 7-7z"/>
-        </svg>
-        <h2 class="text-xl font-bold text-primary-blue mb-2">Circulation and Heart Health</h2>
-        <p class="text-sm text-gray-500">Blood flow & cardiovascular support.</p>
-        <span class="mt-4 text-sm font-semibold text-primary-blue flex items-center">View Articles →</span>
-      </a>
-
-
-      <!-- Liver & Gut -->
-      <a href="/reviews/liver-and-gut" class="category-card flex flex-col items-start p-6 bg-card-bg rounded-xl shadow-lg border border-gray-100">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" class="w-8 h-8 text-primary-blue mb-4" viewBox="0 0 24 24">
-          <path d="M12 22c-4.4 0-8-3.6-8-8 0-3.3 2-6.2 5-7.5L8 2h8l-1 4.5c3 1.3 5 4.2 5 7.5 0 4.4-3.6 8-8 8z"/>
-        </svg>
-        <h2 class="text-xl font-bold text-primary-blue mb-2">Liver and Gut Health</h2>
-        <p class="text-sm text-gray-500">Digestive health & liver support.</p>
-        <span class="mt-4 text-sm font-semibold text-primary-blue flex items-center">View Articles →</span>
-      </a>
-
-
-      <!-- Dental -->
-      <a href="/reviews/dental-health" class="category-card flex flex-col items-start p-6 bg-card-bg rounded-xl shadow-lg border border-gray-100">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" class="w-8 h-8 text-primary-blue mb-4" viewBox="0 0 24 24">
-          <path d="M12 2c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2s2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
-          <path d="M4 10h4a2 2 0 010 4H4a2 2 0 010-4z"/>
-          <path d="M16 10h4a2 2 0 010 4h-4a2 2 0 010-4z"/>
-        </svg>
-        <h2 class="text-xl font-bold text-primary-blue mb-2">Dental Health</h2>
-        <p class="text-sm text-gray-500">Teeth, gums & oral hygiene.</p>
-        <span class="mt-4 text-sm font-semibold text-primary-blue flex items-center">View Articles →</span>
-      </a>
-
-
-      <!-- Hearing -->
-      <a href="/reviews/hearing-and-vision" class="category-card flex flex-col items-start p-6 bg-card-bg rounded-xl shadow-lg border border-gray-100">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" class="w-8 h-8 text-primary-blue mb-4" viewBox="0 0 24 24">
-          <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7S2 12 2 12z"/>
-          <circle cx="12" cy="12" r="3"/>
-        </svg>
-        <h2 class="text-xl font-bold text-primary-blue mb-2">Hearing and Vision</h2>
-        <p class="text-sm text-gray-500">Eyesight & hearing enhancement.</p>
-        <span class="mt-4 text-sm font-semibold text-primary-blue flex items-center">View Articles →</span>
-      </a>
-
-
-      <!-- Pain -->
-      <a href="/reviews/pain-joint-muscle" class="category-card flex flex-col items-start p-6 bg-card-bg rounded-xl shadow-lg border border-gray-100">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" class="w-8 h-8 text-primary-blue mb-4" viewBox="0 0 24 24">
-          <circle cx="12" cy="12" r="10"/>
-          <circle cx="12" cy="12" r="6"/>
-          <circle cx="12" cy="12" r="2"/>
-        </svg>
-        <h2 class="text-xl font-bold text-primary-blue mb-2">Pain, Joint and Muscle</h2>
-        <p class="text-sm text-gray-500">Pain relief & mobility support.</p>
-        <span class="mt-4 text-sm font-semibold text-primary-blue flex items-center">View Articles →</span>
-      </a>
-
-
-      <!-- Blood Sugar -->
-      <a href="/reviews/blood-suggar" class="category-card flex flex-col items-start p-6 bg-card-bg rounded-xl shadow-lg border border-gray-100">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" class="w-8 h-8 text-primary-blue mb-4" viewBox="0 0 24 24">
-          <path d="M12 2.7l5.7 5.7a8 8 0 01-11.4 11.4A8 8 0 0112 2.7z"/>
-        </svg>
-        <h2 class="text-xl font-bold text-primary-blue mb-2">Blood Suggar Control</h2>
-        <p class="text-sm text-gray-500">Blood sugar & metabolic balance.</p>
-        <span class="mt-4 text-sm font-semibold text-primary-blue flex items-center">View Articles →</span>
-      </a>
-
-
-      <!-- Skin -->
-      <a href="/reviews/skin-hair-aging" class="category-card flex flex-col items-start p-6 bg-card-bg rounded-xl shadow-lg border border-gray-100">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" class="w-8 h-8 text-primary-blue mb-4" viewBox="0 0 24 24">
-          <circle cx="12" cy="12" r="10"/>
-          <path d="M8 10h.01M16 10h.01"/>
-          <path d="M9 15c.5 1 1 2 3 2s2.5-1 3-2"/>
-        </svg>
-        <h2 class="text-xl font-bold text-primary-blue mb-2">Skin, Hair and Anti-Aging</h2>
-        <p class="text-sm text-gray-500">Dermatology, beauty & anti-aging.</p>
-        <span class="mt-4 text-sm font-semibold text-primary-blue flex items-center">View Articles →</span>
-      </a>
-
-
-      <!-- Other -->
-      <a href="/reviews/other" class="category-card flex flex-col items-start p-6 bg-card-bg rounded-xl shadow-lg border border-gray-100">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" class="w-8 h-8 text-primary-blue mb-4" viewBox="0 0 24 24">
-          <path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/>
-          <path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/>
-        </svg>
-        <h2 class="text-xl font-bold text-primary-blue mb-2">Other / Miscellaneous</h2>
-        <p class="text-sm text-gray-500">General wellness & mixed topics.</p>
-        <span class="mt-4 text-sm font-semibold text-primary-blue flex items-center">View Articles →</span>
-      </a>
-
+        <!-- OTHER -->
+        <a href="/reviews/other" class="category-card">
+          <div class="icon-wrapper">
+            <svg viewBox="0 0 24 24">
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+            </svg>
+          </div>
+          <h2>Other / Miscellaneous</h2>
+          <p>Various topics and general articles on health and well-being.</p>
+          <span class="card-link">View Articles →</span>
+        </a>
+      </div>
     </div>
   </main>
 
   <!-- FOOTER -->
-  <footer class="bg-white mt-12 border-t border-gray-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center text-gray-500 text-sm">
-      © BestSupplementsToday. All rights reserved.
-    </div>
+  <footer class="page-footer">
+    ©BestSupplementsToday. All rights reserved.
   </footer>
+</section>
 
-</body>
-</html>
+<style>
+  .categories-page {
+    min-height: 100vh;
+    background: #e5e7eb;
+    display: flex;
+    flex-direction: column;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  /* HEADER */
+  .page-header {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    box-shadow: 0 2px 4px -2px rgba(15, 23, 42, 0.12);
+  }
+
+  .header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .site-title a {
+    color: #1e3a8a;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    font-size: 16px;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  .header-nav a {
+    color: #6b7280;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+  }
+
+  .header-nav a:hover {
+    color: #1e3a8a;
+  }
+
+  /* MAIN */
+  .page-main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    padding: 40px 16px 60px;
+  }
+
+  .page-box {
+    width: 100%;
+    max-width: 1200px;
+    background: #ffffff;
+    border-radius: 28px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 18px 50px -15px rgba(0, 0, 0, 0.15);
+    padding: 50px 40px;
+  }
+
+  .intro {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .intro h1 {
+    color: #1e3a8a;
+    font-size: 38px;
+    font-weight: 800;
+    margin-bottom: 12px;
+  }
+
+  .intro p {
+    color: #4b5563;
+    font-size: 17px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  /* GRID */
+  .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 24px;
+  }
+
+  @media (min-width: 640px) {
+    .categories-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .categories-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  /* CARDS */
+  .category-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 22px;
+    padding: 28px;
+    text-decoration: none;
+    color: #1f2937;
+    box-shadow: 0 12px 20px -8px rgba(0, 0, 0, 0.08);
+    transition: 0.25s ease;
+  }
+
+  .category-card:hover {
+    transform: translateY(-6px);
+    border-color: #1e3a8a;
+    box-shadow: 0 20px 40px -12px rgba(30, 64, 175, 0.25);
+    background: #f9fafb;
+  }
+
+  .icon-wrapper {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 16px;
+  }
+
+  .icon-wrapper svg {
+    width: 100%;
+    height: 100%;
+    stroke: #1e3a8a;
+    fill: none;
+    stroke-width: 2.3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .category-card h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1e3a8a;
+    margin-bottom: 10px;
+  }
+
+  .category-card p {
+    font-size: 15px;
+    color: #6b7280;
+    margin-bottom: 18px;
+  }
+
+  .card-link {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1e3a8a;
+  }
+
+  /* FOOTER */
+  .page-footer {
+    text-align: center;
+    font-size: 13px;
+    color: #6b7280;
+    padding: 22px 0 30px;
+  }
+</style>
