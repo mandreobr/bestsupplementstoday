@@ -694,9 +694,9 @@ reviewCategory: "Men’s Health"
     <span class="tag-item">vitamin B6</span>
   </div>
 </div>
-
 >
-CATEGORY
+    CATEGORY
   </h3>
   <div class="flex flex-wrap gap-2">
     <span class="tag-item">Men´s Health</span>
+</div>
