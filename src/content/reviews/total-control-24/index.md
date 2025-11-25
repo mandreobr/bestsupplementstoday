@@ -645,9 +645,9 @@ reviewCategory: "Men’s Health"
 <!-- CTA 4 – Blue Banner Before Tags -->
 <div class="cta-banner">
   <div class="cta-banner-inner">
-    <h3 class="cta-banner-title">
+    <h2 class="cta-banner-title">
       Secure Checkout + Exclusive Bundles
-    </h3>
+    </h2>
     <a
       href="https://linkly.link/2RIOy"
       target="_blank"
