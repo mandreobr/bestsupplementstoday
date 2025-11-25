@@ -695,7 +695,7 @@ reviewCategory: "Men’s Health"
   </div>
 </div>
 >
-    CATEGORY
+    CATEGORY TAG
   </h3>
   <div class="flex flex-wrap gap-2">
     <span class="tag-item">Men´s Health</span>
