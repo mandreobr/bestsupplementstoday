@@ -641,16 +641,16 @@ reviewCategory: "Men’s Health"
 </p>
 
 <!-- CTA 4 – Blue Full-Width Banner Before Tags -->
-<div class="w-full bg-[#2563eb] rounded-2xl shadow-xl py-10 px-4 md:px-8 my-10">
-  <div class="max-w-3xl mx-auto text-center">
-    <h2 class="text-2xl md:text-3xl font-extrabold text-white mb-4">
+<div class="cta-banner">
+  <div class="cta-banner-inner">
+    <h2 class="cta-banner-title">
       Secure Checkout + Exclusive Bundles
     </h2>
     <a
       href="https://linkly.link/2RIOy"
       target="_blank"
       rel="noopener noreferrer"
-      class="inline-block mt-2 border-2 border-white text-white text-base md:text-lg font-semibold rounded-full px-8 py-3 tracking-wide hover:bg-white hover:text-[#2563eb] transition-all duration-200 shadow-lg"
+      class="cta-banner-button"
     >
       Visit Official Total Control 24 Website
     </a>
