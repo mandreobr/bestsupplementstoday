@@ -72,15 +72,15 @@ reviewCategory: "Men’s Health"
 
 <!-- CTA 1 -->
 <div class="cta-block">
-  <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+  <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-3">
     Save $20 Per Bottle On Today’s Offer
-  </h2>
+  </h3>
   <a
     href="https://linkly.link/2RIOy"
     target="_blank"
     rel="noopener noreferrer"
     class="btn-primary cta-button"
-      >
+  >
     Visit Official Total Control 24 Website
   </a>
 </div>
@@ -151,14 +151,14 @@ reviewCategory: "Men’s Health"
 
 <!-- CTA 2 -->
 <div class="cta-block">
-  <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+  <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-3">
     Secure Checkout + Exclusive Bundles
-  </h2>
+  </h3>
   <a
     href="https://linkly.link/2RIOy"
     target="_blank"
     rel="noopener noreferrer"
-    class="btn-primary cta-button"    
+    class="btn-primary cta-button"
   >
     Visit Official Total Control 24 Website
   </a>
@@ -330,9 +330,9 @@ reviewCategory: "Men’s Health"
 
 <!-- CTA 3 -->
 <div class="cta-block">
-  <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+  <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-3">
     Save $120 On The 6-Bottle Pack Deal Today
-  </h2>
+  </h3>
   <a
     href="https://linkly.link/2RIOy"
     target="_blank"
@@ -644,9 +644,9 @@ reviewCategory: "Men’s Health"
 
 <!-- Footer CTA -->
 <div class="cta-block mt-10">
-  <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+  <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-3">
     Secure Checkout + Exclusive Bundles
-  </h2>
+  </h3>
   <a
     href="https://linkly.link/2RIOy"
     target="_blank"
