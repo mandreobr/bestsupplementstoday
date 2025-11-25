@@ -79,7 +79,7 @@ reviewCategory: "Men’s Health"
     href="https://linkly.link/2RIOy"
     target="_blank"
     rel="noopener noreferrer"
-    class="btn-primary text-sm md:text-base"
+    class="btn-primary text-base text-white no-underline"
   >
     Visit Official Total Control 24 Website
   </a>
@@ -158,7 +158,7 @@ reviewCategory: "Men’s Health"
     href="https://linkly.link/2RIOy"
     target="_blank"
     rel="noopener noreferrer"
-    class="btn-primary text-sm md:text-base"
+    class="btn-primary text-base text-white no-underline"
   >
     Visit Official Total Control 24 Website
   </a>
@@ -235,12 +235,18 @@ reviewCategory: "Men’s Health"
 </div>
 
 <!-- LABEL IMAGE -->
-<div class="my-8 flex flex-col items-center">
-  <img
-    src="/images/2.Men/total-control-24/label.jpg"
-    alt="Total Control 24 supplement facts and ingredients label showing pine pollen, saw palmetto, pygeum africanum, jaboticaba extract, Lipophytol, neem, boron, vitamin E, and vitamin B6"
-    class="label-image zoomable"
-  />
+<div class="my-10 flex flex-col items-center">
+  <a
+    href="/images/2.Men/total-control-24/label.jpg"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <img
+      src="/images/2.Men/total-control-24/label.jpg"
+      alt="Total Control 24 supplement facts and ingredients label showing pine pollen, saw palmetto, pygeum africanum, jaboticaba extract, Lipophytol, neem, boron, vitamin E, and vitamin B6"
+      class="label-image"
+    />
+  </a>
   <p class="image-caption">
     The Total Control 24 label reveals its blend of botanicals, phytosterols,
     and supportive micronutrients formulated to target prostate health, urinary
@@ -331,7 +337,7 @@ reviewCategory: "Men’s Health"
     href="https://linkly.link/2RIOy"
     target="_blank"
     rel="noopener noreferrer"
-    class="btn-primary text-sm md:text-base"
+    class="btn-primary text-base text-white no-underline"
   >
     Visit Official Total Control 24 Website
   </a>
@@ -645,7 +651,7 @@ reviewCategory: "Men’s Health"
     href="https://linkly.link/2RIOy"
     target="_blank"
     rel="noopener noreferrer"
-    class="btn-primary text-sm md:text-base"
+    class="btn-primary text-base text-white no-underline"
   >
     Visit Official Total Control 24 Website
   </a>
