@@ -9,7 +9,7 @@ heroAlt: "Prostadine dietary supplement bottle – natural drops for prostate he
 heroCaption: "Prostadine is a natural liquid supplement designed to support prostate health, urinary comfort, and bladder control."
 primaryCtaLabel: "Secure Checkout + Exclusive Bundles"
 primaryCtaUrl: "https://linkly.link/2LziG"
-reviewCategory: "Men’s Health"
+category: "men-health"
 ---
 <header class="mb-10 text-center">
   <h1

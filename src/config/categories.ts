@@ -1,75 +1,75 @@
 export const CATEGORY_CONFIG = {
-  'Weight Loss and Fat Burn': {
-    slug: 'weight-loss',
+  "Weight Loss and Fat Burn": {
+    slug: "weight-loss",
     description:
-      'Supplements designed to support fat burning, metabolism, appetite control, and overall weight management.'
+      "Supplements designed to support fat burning, metabolism, appetite control, and overall weight management.",
   },
 
-  'Brain and Neuro Health': {
-    slug: 'brain-and-neuro',
+  "Brain and Neuro Health": {
+    slug: "brain-and-neuro",
     description:
-      'Formulas that support cognitive performance, focus, memory, neurotransmitters, and long-term brain health.'
+      "Formulas that support cognitive performance, focus, memory, neurotransmitters, and long-term brain health.",
   },
 
-  "Men´s Health": {
-    slug: 'men-health',
+  "Men's Health": {
+    slug: "men-health",
     description:
-      'Supplements designed for prostate health, hormones, vitality, performance, and male wellness.'
+      "Supplements designed for prostate health, hormones, vitality, performance, and male wellness.",
   },
 
-  "Women´s Health": {
-    slug: 'women-health',
+  "Women's Health": {
+    slug: "women-health",
     description:
-      'Supplements that support hormonal balance, metabolism, energy, and women’s long-term health.'
+      "Supplements that support hormonal balance, metabolism, energy, and women’s long-term health.",
   },
 
-  'Circulation and Heart Health': {
-    slug: 'heart-and-circulation',
+  "Circulation and Heart Health": {
+    slug: "heart-and-circulation",
     description:
-      'Products that support cardiovascular health, nitric oxide production, circulation, and healthy blood flow.'
+      "Products that support cardiovascular health, nitric oxide production, circulation, and healthy blood flow.",
   },
 
-  'Liver and Gut Health': {
-    slug: 'liver-and-gut',
+  "Liver and Gut Health": {
+    slug: "liver-and-gut",
     description:
-      'Detox, digestion, microbiome, and liver-supporting supplements for healthier metabolism and nutrient absorption.'
+      "Detox, digestion, microbiome, and liver-supporting supplements for healthier metabolism and nutrient absorption.",
   },
 
-  'Dental Health': {
-    slug: 'dental-health',
+  "Dental Health": {
+    slug: "dental-health",
     description:
-      'Oral microbiome support, gum health, enamel-strengthening formulas, and natural dental wellness.'
+      "Oral microbiome support, gum health, enamel-strengthening formulas, and natural dental wellness.",
   },
 
-  'Hearing and Vision': {
-    slug: 'hearing-and-vision',
+  "Hearing and Vision": {
+    slug: "hearing-and-vision",
     description:
-      'Supplements designed to support eyesight, retinal health, tinnitus management, and hearing clarity.'
+      "Supplements designed to support eyesight, retinal health, tinnitus management, and hearing clarity.",
   },
 
-  'Pain, Joint and Muscle': {
-    slug: 'pain-joint-muscle',
+  "Pain, Joint and Muscle": {
+    slug: "pain-joint-muscle",
     description:
-      'Formulas supporting joint comfort, flexibility, inflammation modulation, and muscle recovery.'
+      "Formulas supporting joint comfort, flexibility, inflammation modulation, and muscle recovery.",
   },
 
-  'Blood Sugar Control': {
-    slug: 'blood-sugar',
+  "Blood Sugar Control": {
+    slug: "blood-sugar",
     description:
-      'Supplements that help balance blood sugar levels, insulin function, and metabolic health.'
+      "Supplements that help balance blood sugar levels, insulin function, and metabolic health.",
   },
 
-  'Skin, Hair and Anti-Aging': {
-    slug: 'skin-hair-aging',
+  "Skin, Hair and Anti-Aging": {
+    slug: "skin-hair-aging",
     description:
-      'Anti-aging support, collagen, skin elasticity, hair strength, and healthy cellular regeneration.'
+      "Anti-aging support, collagen, skin elasticity, hair strength, and healthy cellular regeneration.",
   },
 
-  'Other / Miscellaneous': {
-    slug: 'other',
+  "Other / Miscellaneous": {
+    slug: "other",
     description:
-      'Supplements that do not fit into a specific category but still offer meaningful health benefits.'
-  }
+      "Supplements that do not fit into a specific category but still offer meaningful health benefits.",
+  },
 } as const;
 
 export type CategoryKey = keyof typeof CATEGORY_CONFIG;

@@ -13,7 +13,7 @@ heroCaption: "Max Boost Plus is a natural male vitality complex designed to supp
 primaryCtaLabel: "Save $20 Per Bottle On Today’s Offer"
 primaryCtaUrl: "https://linkly.link/2Qwyc"
 
-reviewCategory: "Men’s Health"
+category: "men-health"
 ---
 <header class="mb-10 text-center">
   <h1

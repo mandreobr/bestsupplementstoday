@@ -26,21 +26,47 @@ if (!match) {
 
 const [categoryKey, categoryConfig] = match;
 
-// 4) Filtrar reviews dessa categoria (usa a chave da CATEGORY_CONFIG)
-const categoryReviews = reviews.filter(
-  (review) => review.data.category === categoryKey
+// Função para normalizar valores de categoria (suporta chave, slug ou label)
+const normalize = (val: unknown) => {
+  if (!val) return "";
+  return String(val)
+    .trim()
+    .toLowerCase()
+    .replace(/[’']/g, "") // remove apóstrofos
+    .replace(/\s+/g, "-"); // espaços -> hífen
+};
+
+const targetSlug = slug;
+const keyNorm = normalize(categoryKey);
+const titleNorm = normalize(
+  categoryConfig.title ?? categoryConfig.label ?? categoryKey
 );
+const labelNorm = normalize(categoryConfig.label ?? "");
+
+// 4) Filtrar reviews dessa categoria
+// Regra: frontmatter "category" deve ser o slug (ex.: "men-health", "dental-health")
+// ou, opcionalmente, o label exato da categoria.
+const categoryReviews = reviews.filter((review) => {
+  const raw = review.data.category ?? review.data.reviewCategory;
+  if (!raw) return false;
+
+  const value = String(raw).trim().toLowerCase();
+  const slugNorm = slug.toLowerCase();
+  const labelNorm = String(categoryConfig.label ?? "").trim().toLowerCase();
+
+  return value === slugNorm || value === labelNorm;
+});
 
 // Helpers de texto
 const categoryTitle =
   categoryConfig.title ?? categoryConfig.label ?? categoryKey;
 const categoryDescription =
   categoryConfig.description ??
-  `Explore supplement reviews related to ${categoryTitle} on Best Supplements Today.`;
+  `Explore in-depth supplement reviews for ${categoryTitle} on Best Supplements Today.`;
 
 const canonicalUrl = `https://www.bestsupplementstoday.com/reviews/category/${slug}/`;
 
-// Breadcrumb simples para SEO + UX
+// Breadcrumb simples
 const breadcrumbs = [
   { name: "Home", url: "/" },
   { name: "All Reviews", url: "/reviews" },
@@ -48,13 +74,13 @@ const breadcrumbs = [
 ];
 ---
 
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <title>
       {categoryTitle} — Supplement Reviews | Best Supplements Today
     </title>
-
     <meta name="description" content={categoryDescription} />
     <meta
       name="robots"
@@ -63,123 +89,476 @@ const breadcrumbs = [
         : "index,follow"}
     />
     <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Fonte Inter -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    />
+
+    <style>
+      :root {
+        --primary-blue: #1e3a8a;
+        --bg-light: #f9fafb;
+        --card-bg: #ffffff;
+        --text-main: #1f2937;
+        --text-muted: #6b7280;
+        --tag-bg: #e5e7eb;
+        --border-subtle: #e5e7eb;
+        --shadow-soft: 0 10px 20px -8px rgba(15, 23, 42, 0.15);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        background: var(--bg-light);
+        color: var(--text-main);
+        font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+      }
+
+      /* HEADER */
+      .site-header {
+        background: #ffffff;
+        box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+      }
+
+      .header-inner {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 12px 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .brand {
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--primary-blue);
+      }
+
+      .header-nav a {
+        font-size: 14px;
+        font-weight: 600;
+        color: #4b5563;
+        text-decoration: none;
+      }
+
+      .header-nav a:hover {
+        color: var(--primary-blue);
+      }
+
+      /* LAYOUT PRINCIPAL */
+      .page-wrapper {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 40px 16px 56px;
+      }
+
+      /* BREADCRUMB */
+      .breadcrumb {
+        font-size: 11px;
+        color: #6b7280;
+        margin-bottom: 12px;
+      }
+
+      .breadcrumb ol {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+      }
+
+      .breadcrumb a {
+        color: #6b7280;
+        text-decoration: none;
+      }
+
+      .breadcrumb a:hover {
+        color: #111827;
+      }
+
+      .breadcrumb-current {
+        font-weight: 600;
+        color: #374151;
+      }
+
+      /* HERO DA CATEGORIA */
+      .category-hero {
+        background: #ffffff;
+        border-radius: 16px;
+        border: 1px solid var(--border-subtle);
+        padding: 24px 20px 20px;
+        margin-bottom: 32px;
+      }
+
+      .category-title {
+        font-size: 30px;
+        line-height: 1.15;
+        margin: 0 0 8px;
+        color: var(--primary-blue);
+        font-weight: 800;
+      }
+
+      @media (min-width: 640px) {
+        .category-title {
+          font-size: 34px;
+        }
+      }
+
+      .category-description {
+        margin: 0;
+        font-size: 15px;
+        line-height: 1.6;
+        color: #4b5563;
+        max-width: 720px;
+      }
+
+      .category-divider {
+        margin-top: 16px;
+        border: none;
+        border-top: 1px solid rgba(30, 64, 175, 0.6);
+      }
+
+      /* LISTA DE CARDS */
+      .article-list {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .article-card {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+        background: var(--card-bg);
+        border-radius: 16px;
+        border: 1px solid var(--border-subtle);
+        box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+        overflow: hidden;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      /* CARD — LAYOUT GERAL */
+.article-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: var(--card-bg);
+  border-radius: 16px;
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.article-card-inner {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .article-card-inner {
+    flex-direction: row;
+    height: 240px; /* 🎯 ALTURA FIXA — AJUSTE AQUI */
+  }
+}
+
+/* IMAGEM ESQUERDA */
+.article-image-container {
+  background: #f3f4f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 180px;
+}
+
+@media (min-width: 768px) {
+  .article-image-container {
+    width: 34%;
+    height: 100%; /* Preenche os 240px */
+  }
+}
+
+.article-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 16px;
+}
+
+/* CONTEÚDO DIREITA */
+.article-content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .article-content {
+    width: 66%;
+    padding: 24px 28px;
+  }
+}
+
+
+      .article-image {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        padding: 16px;
+      }
+
+      .article-image-placeholder {
+        padding: 32px;
+        font-size: 13px;
+        color: #9ca3af;
+      }
+
+      .article-content {
+        padding: 20px 20px 18px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      @media (min-width: 768px) {
+        .article-content {
+          width: 66%;
+          padding: 24px 28px;
+        }
+      }
+
+      .article-title {
+        font-size: 22px;
+        line-height: 1.3;
+        margin: 0 0 10px;
+        font-weight: 700;
+        color: var(--primary-blue);
+      }
+
+      @media (min-width: 640px) {
+        .article-title {
+          font-size: 24px;
+        }
+      }
+
+      .article-description {
+        margin: 0 0 14px;
+        font-size: 14px;
+        line-height: 1.7;
+        color: #374151;
+      }
+
+      .tag-list {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 0 12px;
+        gap: 6px;
+      }
+
+      .tag-pill {
+        background: var(--tag-bg);
+        border-radius: 999px;
+        padding: 4px 10px;
+        font-size: 11px;
+        font-weight: 600;
+        color: #4b5563;
+        white-space: nowrap;
+      }
+
+      .article-cta {
+        margin-top: auto;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--primary-blue);
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .article-cta svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      /* BLOCO "SEM REVIEWS" */
+      .empty-state {
+        background: #ffffff;
+        border-radius: 16px;
+        border: 1px solid var(--border-subtle);
+        padding: 32px 20px;
+        text-align: center;
+        color: var(--text-muted);
+        font-size: 14px;
+      }
+
+      .empty-state a {
+        display: inline-flex;
+        margin-top: 8px;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--primary-blue);
+        text-decoration: none;
+      }
+
+      .empty-state a:hover {
+        color: #1d4ed8;
+      }
+
+      /* FOOTER */
+      .site-footer {
+        background: #ffffff;
+        border-top: 1px solid #e5e7eb;
+        margin-top: 40px;
+      }
+
+      .footer-inner {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 16px;
+        text-align: center;
+        font-size: 12px;
+        color: #6b7280;
+      }
+    </style>
   </head>
 
-  <body class="bg-white text-slate-900">
-    <main class="min-h-screen max-w-6xl mx-auto px-4 pb-16">
-      {/* Breadcrumb */}
-      <nav class="pt-6 text-xs text-slate-500">
-        <ol class="flex flex-wrap items-center gap-1">
+  <body>
+    <!-- HEADER -->
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="brand">Best Supplements Today</div>
+        <nav class="header-nav">
+          <a href="/">Home</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="page-wrapper">
+      <!-- Breadcrumb -->
+      <nav class="breadcrumb">
+        <ol>
           {breadcrumbs.map((crumb, index) => (
-            <li class="flex items-center">
-              {index > 0 && <span class="mx-1 text-slate-400">/</span>}
+            <li>
+              {index > 0 && <span>/</span>}
               {index < breadcrumbs.length - 1 ? (
-                <a href={crumb.url} class="hover:text-slate-800">
-                  {crumb.name}
-                </a>
+                <a href={crumb.url}>{crumb.name}</a>
               ) : (
-                <span class="text-slate-700 font-semibold">
-                  {crumb.name}
-                </span>
+                <span class="breadcrumb-current">{crumb.name}</span>
               )}
             </li>
           ))}
         </ol>
       </nav>
 
-      {/* Hero da categoria */}
-      <header class="pt-6 pb-8 flex flex-col items-center text-center gap-4">
-        <div class="inline-flex items-center justify-center rounded-full border border-slate-200 px-3 py-1 text-xs font-medium text-slate-600 bg-slate-50">
-          Category
-        </div>
+      <!-- HERO DA CATEGORIA -->
+      <section class="category-hero">
+        <h1 class="category-title">{categoryTitle}</h1>
+        <p class="category-description">{categoryDescription}</p>
+        <hr class="category-divider" />
+      </section>
 
-        <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight">
-          {categoryTitle}
-        </h1>
-
-        <p class="text-base md:text-lg text-slate-600 max-w-3xl">
-          {categoryDescription}
-        </p>
-
-        <p class="text-xs uppercase tracking-wide text-slate-500">
-          {categoryReviews.length === 0
-            ? "No reviews published yet"
-            : `${categoryReviews.length} review${categoryReviews.length > 1 ? "s" : ""} in this category`}
-        </p>
-      </header>
-
-      {/* Conteúdo da categoria: grid de reviews */}
+      <!-- LISTA DE REVIEWS / ARTIGOS -->
       {categoryReviews.length === 0 ? (
-        <section class="mt-10 text-center text-slate-600">
-          <p class="mb-4">
+        <section class="empty-state">
+          <p>
             We haven’t published reviews in this category yet. New articles will
             be added soon.
           </p>
-          <a
-            href="/reviews"
-            class="inline-flex items-center text-sm font-semibold text-blue-700 hover:text-blue-900"
-          >
-            ← Browse all reviews
-          </a>
+          <a href="/reviews">← Browse all reviews</a>
         </section>
       ) : (
-        <section class="mt-4">
-          <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {categoryReviews.map((review) => {
-              const title = review.data.pageTitle ?? review.data.title;
-              const description = review.data.metaDescription ?? "";
-              const heroImage =
-                review.data.heroImage ||
-                review.data.imageHero ||
-                review.data.image ||
-                null;
+        <section class="article-list">
+          {categoryReviews.map((review) => {
+            const title = review.data.pageTitle ?? review.data.title;
+            const description = review.data.metaDescription ?? "";
+            const heroImage =
+              review.data.heroImage ||
+              review.data.imageHero ||
+              review.data.image ||
+              null;
 
-              return (
-                <article class="border border-slate-200 rounded-2xl overflow-hidden bg-white flex flex-col h-full shadow-sm hover:shadow-md transition-shadow">
-                  {/* Imagem opcional do review (se existir no frontmatter) */}
-                  {heroImage && (
-                    <a href={`/reviews/${review.slug}`}>
+            const tags =
+              review.data.conditions ||
+              review.data.tags ||
+              review.data.keywords ||
+              [];
+
+            return (
+              <a href={`/reviews/${review.slug}`} class="article-card">
+                <div class="article-card-inner">
+                  {/* IMAGEM HERO À ESQUERDA */}
+                  <div class="article-image-container">
+                    {heroImage ? (
                       <img
                         src={heroImage}
                         alt={title}
                         loading="lazy"
-                        class="w-full h-40 object-cover"
+                        class="article-image"
                       />
-                    </a>
-                  )}
+                    ) : (
+                      <div class="article-image-placeholder">Hero Image</div>
+                    )}
+                  </div>
 
-                  <div class="p-5 flex flex-col flex-1">
-                    <h2 class="text-lg font-semibold mb-2">
-                      <a
-                        href={`/reviews/${review.slug}`}
-                        class="hover:text-blue-700 transition-colors"
-                      >
-                        {title}
-                      </a>
-                    </h2>
+                  {/* CONTEÚDO À DIREITA */}
+                  <div class="article-content">
+                    <h2 class="article-title">{title}</h2>
 
                     {description && (
-                      <p class="text-sm text-slate-600 mb-4 line-clamp-3">
-                        {description}
-                      </p>
+                      <p class="article-description">{description}</p>
                     )}
 
-                    <div class="mt-auto pt-2">
-                      <a
-                        href={`/reviews/${review.slug}`}
-                        class="inline-flex items-center text-sm font-semibold text-blue-700 hover:text-blue-900"
+                    {Array.isArray(tags) && tags.length > 0 && (
+                      <div class="tag-list">
+                        {tags.map((tag) => (
+                          <span class="tag-pill">{tag}</span>
+                        ))}
+                      </div>
+                    )}
+
+                    <div class="article-cta">
+                      <span>Read Full Review</span>
+                      <svg
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
                       >
-                        Read full review
-                        <span class="ml-1">→</span>
-                      </a>
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M14 5l7 7m0 0l-7 7m7-7H3"
+                        ></path>
+                      </svg>
                     </div>
                   </div>
-                </article>
-              );
-            })}
-          </div>
+                </div>
+              </a>
+            );
+          })}
         </section>
       )}
     </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="footer-inner">
+        © BestSupplementsToday. All rights reserved.
+      </div>
+    </footer>
   </body>
 </html>

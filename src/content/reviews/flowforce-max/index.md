@@ -18,7 +18,7 @@ heroCaption: "FlowForce Max is a natural chewable supplement designed to support
 primaryCtaLabel: "Secure Checkout + Exclusive Bundles"
 primaryCtaUrl: "https://linkly.link/2R1gT"
 
-reviewCategory: "Men’s Health"
+category: "men-health"
 
 footerCtaLabel: "Secure Checkout + Exclusive Bundles"
 footerCtaUrl: "https://linkly.link/2R1gT"
