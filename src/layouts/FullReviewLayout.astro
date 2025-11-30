@@ -7,7 +7,7 @@ interface Props {
   footerCtaLabel?: string;
   footerCtaUrl?: string;
   footerText?: string;
-  category?: string; // <= NOVO
+  category?: string;
 }
 
 const {
@@ -53,7 +53,7 @@ const categoryUrl = category ? `/reviews/category/${category}` : null;
         color: #1f2937;
         background-color: #f3f4f6;
         margin: 0;
-        padding-top: 72px; /* espaço para o header fixo (barra baixa) */
+        padding-top: 72px; /* espaço para o header fixo */
       }
 
       .text-primary {
@@ -208,38 +208,6 @@ const categoryUrl = category ? `/reviews/category/${category}` : null;
         box-shadow: 0 18px 40px rgba(37, 99, 235, 0.45);
       }
 
-      /* =========================================
-         AJUSTES OTIMIZADOS PARA MOBILE (CTA)
-         ========================================= */
-
-      @media (max-width: 640px) {
-        .markdown-prose .cta-banner {
-          border-radius: 0;        /* CTA ocupa toda a largura da coluna no mobile */
-          padding: 1.75rem 1.25rem;
-          margin: 2rem 0;
-          max-width: 100%;
-        }
-
-        .markdown-prose .cta-banner-inner {
-          max-width: 100%;
-        }
-
-        .markdown-prose .cta-banner-title {
-          font-size: 1.25rem;     /* Reduz título no mobile */
-          line-height: 1.35;
-        }
-
-        .markdown-prose .cta-banner-button {
-          font-size: 0.95rem;     /* Diminui fonte p/ não quebrar feio */
-          padding: 0.75rem 1.6rem;
-          line-height: 1.3;
-          width: auto;
-          max-width: 100%;
-          white-space: normal;    /* permite 2 linhas harmoniosas, se precisar */
-          text-align: center;
-        }
-      }
-
       .cta-button {
         font-size: 0.9rem !important;
         color: #ffffff !important;
@@ -370,25 +338,24 @@ const categoryUrl = category ? `/reviews/category/${category}` : null;
       .tag-item {
         display: inline-block;
         padding: 0.25rem 0.85rem;
-        border-radius: 9999px;          /* pílula */
-        background-color: #f3f4f6;      /* cinza claro padrão */
+        border-radius: 9999px;
+        background-color: #f3f4f6;
         color: #4b5563;
         font-size: 0.86rem;
         margin: 0.25rem;
         border: 1px solid #e5e7eb;
         white-space: nowrap;
-        text-decoration: none;          /* sem sublinhado */
+        text-decoration: none;
       }
 
       .tag-item:hover {
         text-decoration: none;
       }
 
-      /* CATEGORY TAG — mesma forma, só muda cor */
       .category-tag {
-        background-color: #07a80bff; /* verde */
-        color: #ffffff;              /* branco */
-        border: none;                /* sem borda */
+        background-color: #07a80bff;
+        color: #ffffff;
+        border: none;
       }
 
       .category-tag:hover {
@@ -436,13 +403,12 @@ const categoryUrl = category ? `/reviews/category/${category}` : null;
         left: 0;
         right: 0;
         z-index: 40;
-        background-color: #30b7cf; /* cor base do header */
+        background-color: #30b7cf;
         border-bottom: 1px solid #e5e7eb;
         box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
         transition: background-color 0.2s ease, box-shadow 0.2s ease;
       }
 
-      /* estado com leve transparência ao rolar */
       .site-header.header-scrolled {
         background-color: rgba(48, 183, 207, 0.92);
         box-shadow: 0 4px 12px rgba(15, 23, 42, 0.18);
@@ -455,9 +421,9 @@ const categoryUrl = category ? `/reviews/category/${category}` : null;
         padding: 0.5rem 1.5rem;
         display: flex;
         align-items: center;
-        justify-content: center; /* logo centralizada */
+        justify-content: center; /* logo centralizada no desktop */
         position: relative;
-        min-height: 60px;        /* barra mais baixa */
+        min-height: 60px;
       }
 
       .site-logo {
@@ -468,7 +434,7 @@ const categoryUrl = category ? `/reviews/category/${category}` : null;
       }
 
       .site-logo-image {
-        height: 60px;       /* maior que antes (40px) */
+        height: 60px;
         max-width: 220px;
         object-fit: contain;
         display: block;
@@ -526,7 +492,6 @@ const categoryUrl = category ? `/reviews/category/${category}` : null;
         margin-right: auto;
       }
 
-      /* Does It Work Box */
       .does-work-box {
         margin: 2rem 0 2.5rem;
         padding: 1.75rem 1.75rem 1.5rem;
@@ -554,7 +519,6 @@ const categoryUrl = category ? `/reviews/category/${category}` : null;
         color: #1f2933;
       }
 
-      /* FOOTER CTA BANNER (layout) */
       .footer-cta-wrapper {
         margin-top: 2.75rem;
       }
@@ -601,6 +565,59 @@ const categoryUrl = category ? `/reviews/category/${category}` : null;
         font-size: 0.82rem;
         color: #6b7280;
         text-align: center;
+      }
+
+      /* =========================================
+         AJUSTES MOBILE (CTA + HEADER)
+         ========================================= */
+
+      @media (max-width: 640px) {
+        /* CTA azul: banner realmente full-width da tela */
+        .markdown-prose .cta-banner {
+          width: 100vw;
+          max-width: none;
+          border-radius: 0;
+          padding: 1.75rem 1.25rem;
+          margin: 2rem 0;
+          margin-left: 50%;
+          transform: translateX(-50%);
+        }
+
+        .markdown-prose .cta-banner-inner {
+          max-width: 100%;
+        }
+
+        .markdown-prose .cta-banner-title {
+          font-size: 1.25rem;
+          line-height: 1.35;
+        }
+
+        .markdown-prose .cta-banner-button {
+          font-size: 0.95rem;
+          padding: 0.75rem 1.6rem;
+          line-height: 1.3;
+          width: auto;
+          max-width: 100%;
+          white-space: normal;
+          text-align: center;
+        }
+
+        /* Header mobile: evitar sobreposição do logo com os links */
+        .site-header-inner {
+          padding: 0.5rem 0.9rem;
+          justify-content: space-between; /* logo à esquerda, menu à direita */
+        }
+
+        .site-logo-image {
+          height: 50px;
+          max-width: 190px;
+        }
+
+        .site-nav {
+          position: static;
+          gap: 0.9rem;
+          font-size: 0.9rem;
+        }
       }
     </style>
   </head>
@@ -671,7 +688,6 @@ const categoryUrl = category ? `/reviews/category/${category}` : null;
       </div>
     </main>
 
-    <!-- Script simples para adicionar/remover transparência no scroll -->
     <script>
       if (typeof window !== "undefined") {
         const header = document.querySelector(".site-header");
