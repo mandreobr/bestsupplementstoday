@@ -70,19 +70,21 @@ category: "men-health"
   mechanisms of action, pricing, safety, and who it may be best suited for.
 </p>
 
-<!-- CTA 1 -->
-<div class="cta-block">
-  <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-3">
-    Save $20 Per Bottle On Today’s Offer
-  </h3>
-  <a
-    href="https://linkly.link/2RIOy"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="btn-primary cta-button"
-  >
-    Visit Official Total Control 24 Website
-  </a>
+<!-- CTA 1 – Agora com layout estilo CTA 4 -->
+<div class="cta-banner">
+  <div class="cta-banner-inner">
+    <h2 class="cta-banner-title">
+      Save $20 Per Bottle On Today’s Offer
+    </h2>
+    <a
+      href="https://linkly.link/2RIOy"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="cta-banner-button"
+    >
+      Visit Official Total Control 24 Website
+    </a>
+  </div>
 </div>
 
 <h2>Prostate &amp; Urinary Health — Symptoms That Indicate It’s Time to Pay Attention</h2>
@@ -149,19 +151,21 @@ category: "men-health"
   purity and safety.
 </p>
 
-<!-- CTA 2 -->
-<div class="cta-block">
-  <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-3">
-    Secure Checkout + Exclusive Bundles
-  </h3>
-  <a
-    href="https://linkly.link/2RIOy"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="btn-primary cta-button"
-  >
-    Visit Official Total Control 24 Website
-  </a>
+<!-- CTA 2 – Agora com layout estilo CTA 4 -->
+<div class="cta-banner">
+  <div class="cta-banner-inner">
+    <h2 class="cta-banner-title">
+      Secure Checkout + Exclusive Bundles
+    </h2>
+    <a
+      href="https://linkly.link/2RIOy"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="cta-banner-button"
+    >
+      Visit Official Total Control 24 Website
+    </a>
+  </div>
 </div>
 
 <h2>What Ingredients Are in Total Control 24?</h2>
@@ -221,7 +225,7 @@ category: "men-health"
 </p>
 
 <!-- Ingredients Link -->
-<div class="ingredients-link-row" style="margin-bottom: 40px;">
+<div class="ingredients-link-row" style="margin-bottom: 40px; display: flex; align-items: center; gap: 8px;">
   <div class="ingredients-link-icon">
     <span>→</span>
   </div>
@@ -340,20 +344,21 @@ category: "men-health"
   </div>
 </div>
 
-
-<!-- CTA 3 -->
-<div class="cta-block">
-  <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-3">
-    Save $120 On The 6-Bottle Pack Deal Today
-  </h3>
-  <a
-    href="https://linkly.link/2RIOy"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="btn-primary cta-button"
-  >
-    Visit Official Total Control 24 Website
-  </a>
+<!-- CTA 3 – Agora com layout estilo CTA 4 -->
+<div class="cta-banner">
+  <div class="cta-banner-inner">
+    <h2 class="cta-banner-title">
+      Save $120 On The 6-Bottle Pack Deal Today
+    </h2>
+    <a
+      href="https://linkly.link/2RIOy"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="cta-banner-button"
+    >
+      Visit Official Total Control 24 Website
+    </a>
+  </div>
 </div>
 
 <h2>Total Control 24 Price and Discounts</h2>
@@ -706,18 +711,5 @@ category: "men-health"
     <span class="tag-item">boron</span>
     <span class="tag-item">vitamin E</span>
     <span class="tag-item">vitamin B6</span>
-  </div>
-</div>
-
-<!-- CATEGORY TAG -->
-<div class="tag-container mt-6">
-  <h3
-    class="text-xl md:text-2xl font-bold text-gray-900 mb-3"
-    style="border-bottom: none; margin-top: 1.25rem;"
-  >
-    CATEGORY TAG
-  </h3>
-  <div class="flex flex-wrap gap-2">
-    <span class="tag-item">Men’s Health</span>
   </div>
 </div>

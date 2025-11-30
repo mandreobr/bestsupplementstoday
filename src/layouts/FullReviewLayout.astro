@@ -1,14 +1,33 @@
 ---
+import { CATEGORY_CONFIG } from "../config/categories"; // ajuste o caminho se necessário
+
 interface Props {
   pageTitle: string;
   metaDescription: string;
   footerCtaLabel?: string;
   footerCtaUrl?: string;
   footerText?: string;
+  category?: string; // <= NOVO
 }
 
-const { pageTitle, metaDescription, footerCtaLabel, footerCtaUrl, footerText } =
-  Astro.props as Props;
+const {
+  pageTitle,
+  metaDescription,
+  footerCtaLabel,
+  footerCtaUrl,
+  footerText,
+  category
+} = Astro.props;
+
+// Descobre o nome “bonito” da categoria com base no slug
+const categoryEntry = category
+  ? Object.entries(CATEGORY_CONFIG).find(
+      ([, value]) => value.slug === category
+    )
+  : undefined;
+
+const categoryLabel = categoryEntry ? categoryEntry[0] : null;
+const categoryUrl = category ? `/reviews/category/${category}` : null;
 ---
 
 <html lang="en">
@@ -17,6 +36,9 @@ const { pageTitle, metaDescription, footerCtaLabel, footerCtaUrl, footerText } =
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{pageTitle}</title>
     <meta name="description" content={metaDescription} />
+
+    <link rel="icon" type="image/png" href="/images/1.Home/favicon.png" />
+
 
     <!-- Inter font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -31,6 +53,8 @@ const { pageTitle, metaDescription, footerCtaLabel, footerCtaUrl, footerText } =
         font-family: "Inter", sans-serif;
         color: #1f2937;
         background-color: #f3f4f6;
+        margin: 0;
+        padding-top: 72px; /* espaço para o header fixo (barra baixa) */
       }
 
       .text-primary {
@@ -112,14 +136,14 @@ const { pageTitle, metaDescription, footerCtaLabel, footerCtaUrl, footerText } =
       }
 
       .btn-primary {
-       display: inline-block;
-       padding: 0.75rem 2.25rem;   
-       background-color: #2563eb;
-       color: #ffffff;
-       font-weight: 600;           
-       border-radius: 0.9rem;
-       transition: all 0.25s ease;
-       box-shadow: 0 12px 25px rgba(37, 99, 235, 0.45);
+        display: inline-block;
+        padding: 0.75rem 2.25rem;
+        background-color: #2563eb;
+        color: #ffffff;
+        font-weight: 600;
+        border-radius: 0.9rem;
+        transition: all 0.25s ease;
+        box-shadow: 0 12px 25px rgba(37, 99, 235, 0.45);
       }
 
       .btn-primary:hover {
@@ -127,56 +151,56 @@ const { pageTitle, metaDescription, footerCtaLabel, footerCtaUrl, footerText } =
         transform: translateY(-1px);
         box-shadow: 0 18px 35px rgba(37, 99, 235, 0.6);
       }
-/* CTA 4 – Blue full-width banner before tags */
-.markdown-prose .cta-banner {
-  width: 100%;
-  background-color: #2563eb;      
-  border-radius: 0%;
-  padding: 2rem 0%;
-  margin: 2rem auto 1rem;
-  box-shadow: 0 18px 40px rgba(37, 99, 235, 0.35);
-}
 
-.markdown-prose .cta-banner-inner {
-  max-width: 900px;
-  margin: 0 auto;
-  text-align: center;
-}
+      /* CTA 4 – Blue full-width banner before tags */
+      .markdown-prose .cta-banner {
+        width: 100%;
+        background-color: #2563eb;
+        border-radius: 0%;
+        padding: 2rem 0%;
+        margin: 2rem auto 1rem;
+        box-shadow: 0 18px 40px rgba(37, 99, 235, 0.35);
+      }
 
-.markdown-prose .cta-banner-title {
-  color: #ffffff;
-  font-size: 1.6rem;               /* ~24px */
-  font-weight: 800;
-  margin-bottom: 1rem;
-  border-bottom: none;             /* remove aquela linha azul do h2 padrão */
-}
+      .markdown-prose .cta-banner-inner {
+        max-width: 900px;
+        margin: 0 auto;
+        text-align: center;
+      }
 
-.markdown-prose .cta-banner-button {
-  display: inline-block;
-  padding: 0.9rem 2.75rem;
-  border-radius: 9999px;
-  border: 2px solid #ffffff;       /* borda branca */
-  background: transparent;
-  color: #ffffff;
-  font-size: 1rem;                 /* ~16px */
-  font-weight: 700;
-  text-decoration: none;
-  transition: all 0.2s ease;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-}
+      .markdown-prose .cta-banner-title {
+        color: #ffffff;
+        font-size: 1.6rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+        border-bottom: none;
+      }
 
-.markdown-prose .cta-banner-button:hover {
-  background: #ffffff;
-  color: #2563eb;
-  box-shadow: 0 18px 40px rgba(37, 99, 235, 0.45);
-  transform: translateY(-2px);
-}
+      .markdown-prose .cta-banner-button {
+        display: inline-block;
+        padding: 0.9rem 2.75rem;
+        border-radius: 9999px;
+        border: 2px solid #ffffff;
+        background: transparent;
+        color: #ffffff;
+        font-size: 1rem;
+        font-weight: 700;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+      }
 
+      .markdown-prose .cta-banner-button:hover {
+        background: #ffffff;
+        color: #2563eb;
+        box-shadow: 0 18px 40px rgba(37, 99, 235, 0.45);
+        transform: translateY(-2px);
+      }
 
       .cta-button {
-       font-size: 0.9rem !important;   
-       color: #ffffff !important;
-       text-decoration: none !important;
+        font-size: 0.9rem !important;
+        color: #ffffff !important;
+        text-decoration: none !important;
       }
 
       .intro-box {
@@ -293,21 +317,41 @@ const { pageTitle, metaDescription, footerCtaLabel, footerCtaUrl, footerText } =
         font-weight: 700;
       }
 
+      /* TAGS */
       .tag-container {
         margin-top: 2.5rem;
         padding-top: 1.5rem;
         border-top: 1px solid #e5e7eb;
       }
+
       .tag-item {
         display: inline-block;
-        background-color: #f3f4f6;
-        color: #4b5563;
         padding: 0.25rem 0.85rem;
-        border-radius: 9999px;
+        border-radius: 9999px;          /* pílula */
+        background-color: #f3f4f6;      /* cinza claro padrão */
+        color: #4b5563;
         font-size: 0.86rem;
         margin: 0.25rem;
         border: 1px solid #e5e7eb;
         white-space: nowrap;
+        text-decoration: none;          /* sem sublinhado */
+      }
+
+      .tag-item:hover {
+        text-decoration: none;
+      }
+
+      /* CATEGORY TAG — mesma forma, só muda cor */
+      .category-tag {
+        background-color: #07a80bff; /* verde */
+        color: #ffffff;              /* branco */
+        border: none;                /* sem borda */
+      }
+
+      .category-tag:hover {
+        background-color: #07a80bff;
+        color: #ffffff;
+        text-decoration: none;
       }
 
       .hero-image,
@@ -342,31 +386,54 @@ const { pageTitle, metaDescription, footerCtaLabel, footerCtaUrl, footerText } =
         font-style: italic;
       }
 
+      /* HEADER */
       .site-header {
-        background-color: #ffffff;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 40;
+        background-color: #30b7cf; /* cor base do header */
         border-bottom: 1px solid #e5e7eb;
-        box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+        box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
+        transition: background-color 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      /* estado com leve transparência ao rolar */
+      .site-header.header-scrolled {
+        background-color: rgba(48, 183, 207, 0.92);
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.18);
+        backdrop-filter: blur(4px);
       }
 
       .site-header-inner {
         max-width: 1120px;
         margin: 0 auto;
-        padding: 1rem 1.5rem;
+        padding: 0.5rem 1.5rem;
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center; /* logo centralizada */
+        position: relative;
+        min-height: 60px;        /* barra mais baixa */
       }
 
       .site-logo {
-        font-size: 1.1rem;
-        font-weight: 800;
-        letter-spacing: 0.08em;
-        color: #2563eb;
-        text-transform: uppercase;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
         text-decoration: none;
       }
 
+      .site-logo-image {
+        height: 60px;       /* maior que antes (40px) */
+        max-width: 220px;
+        object-fit: contain;
+        display: block;
+      }
+
       .site-nav {
+        position: absolute;
+        right: 1.5rem;
         display: flex;
         gap: 1.5rem;
         font-size: 0.95rem;
@@ -374,12 +441,12 @@ const { pageTitle, metaDescription, footerCtaLabel, footerCtaUrl, footerText } =
       }
 
       .site-nav a {
-        color: #4b5563;
+        color: #ffffff;
         text-decoration: none;
       }
 
       .site-nav a:hover {
-        color: #2563eb;
+        opacity: 0.9;
       }
 
       .final-verdict {
@@ -405,14 +472,6 @@ const { pageTitle, metaDescription, footerCtaLabel, footerCtaUrl, footerText } =
         }
       }
 
-      .final-verdict-divider {
-        width: 60%;
-        max-width: 420px;
-        height: 1px;
-        background-color: #2563eb;
-        margin: 0 auto 1.3rem;
-      }
-
       .markdown-prose .final-verdict-body {
         margin-bottom: 0;
         font-size: 1.02rem;
@@ -424,97 +483,46 @@ const { pageTitle, metaDescription, footerCtaLabel, footerCtaUrl, footerText } =
         margin-right: auto;
       }
 
-      /* ===== FOOTER CTA ===== */
-
-      .footer-cta-wrapper {
-        margin-top: 2.5rem;
-      }
-
-      .footer-cta-banner {
-        width: 100%;
-        background-color: #2563eb;
-        color: #ffffff;
+      /* Does It Work Box */
+      .does-work-box {
+        margin: 2rem 0 2.5rem;
+        padding: 1.75rem 1.75rem 1.5rem;
         border-radius: 1rem;
-        padding: 2.25rem 1.75rem;
-        text-align: center;
-        box-shadow: 0 18px 40px rgba(37, 99, 235, 0.55);
+        background-color: #eff6ff;
+        border-left: 5px solid #2563eb;
+        box-shadow: 0 18px 45px rgba(15, 23, 42, 0.11);
       }
 
-      .footer-cta-title {
-        font-size: 1.4rem;
-        font-weight: 800;
-        margin-bottom: 1rem;
+      .does-work-item + .does-work-item {
+        margin-top: 1.25rem;
+        padding-top: 1.25rem;
+        border-top: 1px solid rgba(148, 163, 184, 0.4);
       }
 
-      @media (min-width: 768px) {
-        .footer-cta-title {
-          font-size: 1.7rem;
-        }
+      .does-work-item h3 {
+        font-size: 1.05rem;
+        font-weight: 700;
+        margin-bottom: 0.35rem;
+        color: #111827;
       }
 
-      .footer-cta-button {
-        display: inline-block;
-        margin-top: 0.75rem;
-        padding: 0.9rem 2.9rem;
-        border-radius: 9999px;
-        border: 2px solid #ffffff;
-        background-color: #ffffff;
-        color: #2563eb;
-        font-weight: 800;
-        font-size: 1rem;
-        text-decoration: none;
-        box-shadow: 0 14px 35px rgba(15, 23, 42, 0.35);
-        transition: all 0.22s ease;
+      .does-work-item p {
+        margin: 0;
+        color: #1f2933;
       }
-
-      .footer-cta-button:hover {
-        background-color: #e5edff;
-        transform: translateY(-1px);
-        opacity: 0.96;
-      }
-
-      .footer-copy {
-        text-align: center;
-        font-size: 0.78rem;
-        color: #9ca3af;
-        margin-top: 1.75rem;
-      }
-
-      /* Box estilizada para seção "Does [Product] Really Work?" */
-.does-work-box {
-  margin: 2rem 0 2.5rem;
-  padding: 1.75rem 1.75rem 1.5rem;
-  border-radius: 1rem;
-  background-color: #eff6ff; /* azul bem claro */
-  border-left: 5px solid #2563eb;
-  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.11);
-}
-
-.does-work-item + .does-work-item {
-  margin-top: 1.25rem;
-  padding-top: 1.25rem;
-  border-top: 1px solid rgba(148, 163, 184, 0.4);
-}
-
-.does-work-item h3 {
-  font-size: 1.05rem;
-  font-weight: 700;
-  margin-bottom: 0.35rem;
-  color: #111827;
-}
-
-.does-work-item p {
-  margin: 0;
-  color: #1f2933;
-}
-
     </style>
   </head>
 
   <body class="min-h-screen flex flex-col antialiased">
     <header class="site-header">
       <div class="site-header-inner">
-        <a href="/" class="site-logo">BEST SUPPLEMENTS TODAY</a>
+        <a href="/" class="site-logo">
+          <img
+            src="/images/1.Home/logo.png"
+            alt="BestSupplementsToday logo"
+            class="site-logo-image"
+          />
+        </a>
         <nav class="site-nav">
           <a href="/">Home</a>
           <a href="/reviews">Reviews</a>
@@ -527,6 +535,24 @@ const { pageTitle, metaDescription, footerCtaLabel, footerCtaUrl, footerText } =
         <article class="review-card">
           <section class="markdown-prose">
             <slot />
+
+            {/* CATEGORY automática */}
+            {categoryLabel && categoryUrl && (
+              <section class="tag-container mt-10">
+                <h3
+                  class="text-xl md:text-2xl font-bold text-gray-900 mb-3"
+                  style="border-bottom: none; margin-top: 1.25rem;"
+                >
+                  CATEGORY
+                </h3>
+
+                <div class="flex flex-wrap gap-2">
+                  <a href={categoryUrl} class="tag-item category-tag">
+                    {categoryLabel}
+                  </a>
+                </div>
+              </section>
+            )}
           </section>
         </article>
 
@@ -548,9 +574,25 @@ const { pageTitle, metaDescription, footerCtaLabel, footerCtaUrl, footerText } =
         )}
 
         <p class="footer-copy">
-          {footerText ?? "© 2025 Best Supplements Today. All rights reserved."}
+          {footerText ?? "© BestSupplementsToday. All rights reserved."}
         </p>
       </div>
     </main>
+
+    <!-- Script simples para adicionar/remover transparência no scroll -->
+    <script>
+      if (typeof window !== "undefined") {
+        const header = document.querySelector(".site-header");
+        const onScroll = () => {
+          if (!header) return;
+          if (window.scrollY > 10) {
+            header.classList.add("header-scrolled");
+          } else {
+            header.classList.remove("header-scrolled");
+          }
+        };
+        window.addEventListener("scroll", onScroll);
+      }
+    </script>
   </body>
 </html>
