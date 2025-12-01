@@ -6,15 +6,20 @@ description: "EndoPeak Review — A natural OTC male-enhancement formula support
 pageTitle: "EndoPeak Review: Natural Support for Libido & Performance"
 metaDescription: "EndoPeak Review — A natural OTC male-enhancement formula supporting erections, libido, stamina, circulation, and overall male vitality."
 
-heroImage: "/images/endopeak/hero.png"
+heroImage: "/images/Men-Health/endopeak/hero.png"
 heroAlt: "EndoPeak male enhancement supplement – natural formula for erections, libido, circulation, and male vitality"
 heroCaption: "EndoPeak is a natural male-enhancement formula designed to support nitric oxide, stamina, hormonal balance, and performance."
 
 primaryCtaLabel: "Save $20 Per Bottle On Today’s Offer"
 primaryCtaUrl: "https://linkly.link/2R0io"
 
+footerCtaLabel: "Secure Checkout + Exclusive Bundles"
+footerCtaUrl: "https://linkly.link/2R0io"
+footerText: "© BestSupplementsToday. All rights reserved."
+
 category: "men-health"
 ---
+
 <header class="mb-10 text-center">
   <h1
     class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 leading-tight"
@@ -36,7 +41,7 @@ category: "men-health"
       rel="noopener noreferrer"
     >
       <img
-        src="/images/endopeak/hero.png"
+        src="/images/Men-Health/endopeak/hero.png"
         alt="EndoPeak male enhancement supplement – natural formula for erections, libido, circulation, and male vitality"
         class="hero-image"
       />
@@ -115,19 +120,21 @@ category: "men-health"
   confidence, and long-term vitality — which is precisely where EndoPeak aims to help.
 </p>
 
-<!-- CTA 1 -->
-<div class="cta-block">
-  <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
-    Save $20 Per Bottle On Today’s Offer
-  </h3>
-  <a
-    href="https://linkly.link/2R0io"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="btn-primary text-base md:text-lg"
-  >
-    Visit Official EndoPeak Website
-  </a>
+<!-- CTA 1 – Banner -->
+<div class="cta-banner">
+  <div class="cta-banner-inner">
+    <h2 class="cta-banner-title">
+      Save $20 Per Bottle On Today’s Offer
+    </h2>
+    <a
+      href="https://linkly.link/2R0io"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="cta-banner-button"
+    >
+      Visit Official EndoPeak Website
+    </a>
+  </div>
 </div>
 
 <h2>What Is EndoPeak?</h2>
@@ -238,11 +245,10 @@ category: "men-health"
   </a>
 </div>
 
-
 <!-- LABEL IMAGE -->
 <div class="my-8 flex flex-col items-center">
   <img
-    src="/images/endopeak/label.jpg"
+    src="/images/Men-Health/endopeak/label.jpg"
     alt="EndoPeak supplement facts and ingredients label including tribulus, tongkat ali, horny goat weed, hawthorn berry, and zinc"
     class="label-image"
   />
@@ -294,19 +300,21 @@ category: "men-health"
   design.
 </p>
 
-<!-- CTA 2 -->
-<div class="cta-block">
-  <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
-    Secure Checkout + Exclusive Bundles
-  </h3>
-  <a
-    href="https://linkly.link/2R0io"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="btn-primary text-base md:text-lg"
-  >
-    Visit Official EndoPeak Website
-  </a>
+<!-- CTA 2 – Banner -->
+<div class="cta-banner">
+  <div class="cta-banner-inner">
+    <h2 class="cta-banner-title">
+      Secure Checkout + Exclusive Bundles
+    </h2>
+    <a
+      href="https://linkly.link/2R0io"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="cta-banner-button"
+    >
+      Visit Official EndoPeak Website
+    </a>
+  </div>
 </div>
 
 <h2>Does EndoPeak Really Work?</h2>
@@ -347,6 +355,23 @@ category: "men-health"
   By addressing these systems together, EndoPeak supports erection quality, stamina, and
   sexual confidence over time.
 </p>
+
+<!-- CTA 3 – Banner -->
+<div class="cta-banner">
+  <div class="cta-banner-inner">
+    <h2 class="cta-banner-title">
+      Save $120 On The 6-Bottle Pack Deal Today
+    </h2>
+    <a
+      href="https://linkly.link/2R0io"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="cta-banner-button"
+    >
+      Visit Official EndoPeak Website
+    </a>
+  </div>
+</div>
 
 <h2>EndoPeak Price and Discounts</h2>
 
@@ -541,7 +566,7 @@ category: "men-health"
     rel="noopener noreferrer"
   >
     <img
-      src="/images/endopeak/benefits.png"
+      src="/images/Men-Health/endopeak/benefits.png"
       alt="EndoPeak 6-bottle bundle – male vitality supplement with natural ingredients and 60-day guarantee"
       class="benefits-image"
     />
@@ -594,19 +619,21 @@ category: "men-health"
   stamina, and overall male vitality.
 </p>
 
-<!-- CTA 4 -->
-<div class="cta-block">
-  <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
-    Secure Checkout + Exclusive Bundles
-  </h3>
-  <a
-    href="https://linkly.link/2R0io"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="btn-primary text-base md:text-lg"
-  >
-    Visit Official EndoPeak Website
-  </a>
+<!-- CTA 4 – Banner -->
+<div class="cta-banner">
+  <div class="cta-banner-inner">
+    <h2 class="cta-banner-title">
+      Secure Checkout + Exclusive Bundles
+    </h2>
+    <a
+      href="https://linkly.link/2R0io"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="cta-banner-button"
+    >
+      Visit Official EndoPeak Website
+    </a>
+  </div>
 </div>
 
 <h2>Conclusion</h2>
@@ -664,6 +691,7 @@ category: "men-health"
   Yes. Its circulation and hormonal-support ingredients make it appropriate for men
   experiencing age-related performance declines who want a natural, foundational approach.
 </p>
+
 <div class="tag-container">
   <h3
     class="text-xl md:text-2xl font-bold text-gray-900 mb-3"
@@ -700,5 +728,4 @@ category: "men-health"
     <span class="tag-item">zinc</span>
   </div>
 </div>
-
 

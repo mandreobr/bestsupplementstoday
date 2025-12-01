@@ -394,7 +394,7 @@ category: "men-health"
         <td class="best-value-col">$49 per bottle</td>
       </tr>
       <tr>
-        <td class="row-label bold-black">PACKAGE PRICE:</td>
+        <td class="row-label bold-black">Package Price:</td>
         <td><span class="bold-black">$69</span></td>
         <td><span class="bold-black">$177</span></td>
         <td class="best-value-col">
@@ -403,7 +403,7 @@ category: "men-health"
       </tr>
       <tr>
         <td class="row-label bold-black">
-          TOTAL SAVINGS (vs 1-bottle option):
+          Total Savings:
         </td>
         <td><span class="bold-black">not apply</span></td>
         <td>
