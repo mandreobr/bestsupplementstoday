@@ -1,16 +1,16 @@
 // src/pages/sitemap.xml.js
-// Gera um sitemap completo usando as rotas do site
+// Gera um sitemap completo usando as rotas do site (versão final com WWW)
 
 import { reviews } from "../data/reviews";
 
-const BASE_URL = "https://bestsupplementstoday.com";
+const BASE_URL = "https://www.bestsupplementstoday.com";
 
 // Rotas estáticas principais do site
 const STATIC_PATHS = [
   "/",                        // Home
-  "/reviews",                 // Lista de reviews
+  "/reviews",                 // Página geral de reviews
 
-  // Categorias (EXATAMENTE como estão publicadas)
+  // Categorias (EXATAMENTE como existem na Vercel)
   "/reviews/category/weight-loss",
   "/reviews/category/brain-and-neuro",
   "/reviews/category/men-health",
@@ -25,7 +25,7 @@ const STATIC_PATHS = [
   "/reviews/category/other",
 ];
 
-// Gera URLs dos reviews a partir do arquivo src/data/reviews.ts
+// Reviews a partir do arquivo src/data/reviews.ts
 function getReviewPaths() {
   return reviews.map((item) => `/reviews/${item.slug}`);
 }
