@@ -8,6 +8,7 @@ interface Props {
   footerCtaUrl?: string;
   footerText?: string;
   category?: string;
+  canonicalUrl?: string; // 👈 novo
 }
 
 const {
@@ -16,7 +17,8 @@ const {
   footerCtaLabel,
   footerCtaUrl,
   footerText,
-  category
+  category,
+  canonicalUrl,
 } = Astro.props;
 
 // Descobre o nome “bonito” da categoria com base no slug
@@ -36,6 +38,12 @@ const categoryUrl = category ? `/reviews/category/${category}` : null;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{pageTitle}</title>
     <meta name="description" content={metaDescription} />
+
+    <!-- canonical automático -->
+    <link
+      rel="canonical"
+      href={canonicalUrl ?? `https://www.bestsupplementstoday.com${Astro.url.pathname}`}
+    />
 
     <link rel="icon" type="image/png" href="/images/1.Home/favicon.png" />
 
