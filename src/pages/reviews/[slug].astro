@@ -1,5 +1,6 @@
 ---
 import FullReviewLayout from "../../layouts/FullReviewLayout.astro";
+import MiniReviewWhatIsLayout from "../../layouts/MiniReviewWhatIsLayout.astro";
 import { getCollection } from "astro:content";
 
 // 🔥 Gera todas as páginas de reviews automaticamente
@@ -7,34 +8,60 @@ export async function getStaticPaths() {
   const reviews = await getCollection("reviews");
 
   return reviews.map((entry) => {
-    // Se o arquivo estiver em uma subpasta, o slug vira "pasta/nome"
-    // Então pegamos só o nome final (prostadine, max-boost-plus, etc.)
-    const cleanSlug = entry.slug.split("/").pop();
+    // Usamos o slug definido no frontmatter (data.slug).
+    // Se não tiver, caímos no slug gerado pelo Astro (última parte do path).
+    const dataSlug = entry.data.slug;
+    const fallbackSlug = entry.slug.split("/").pop();
+    const slug = dataSlug || fallbackSlug;
+
+    if (!slug) {
+      throw new Error(`Missing slug for entry: ${entry.id}`);
+    }
 
     return {
-      params: { slug: cleanSlug },
-      props: { entry, cleanSlug },
+      params: { slug },
+      props: { entry, slug },
     };
   });
 }
 
 // 🔥 Recebe o conteúdo individual de cada review
-const { entry, cleanSlug } = Astro.props;
+const { entry, slug } = Astro.props;
 const data = entry.data;
 const { Content } = await entry.render();
 
-// Canonical completo (sempre com www)
-const canonicalUrl = `https://www.bestsupplementstoday.com/reviews/${cleanSlug}`;
+// Detecta se é mini review "what-is"
+const isWhatIs =
+  typeof slug === "string" && slug.toLowerCase().endsWith("-what-is");
+
+// Canonical completo (sempre com www ou usa o do frontmatter se existir)
+const canonicalUrl =
+  data.canonicalUrl ??
+  `https://www.bestsupplementstoday.com/reviews/${slug}`;
 ---
 
-<FullReviewLayout
-  pageTitle={data.pageTitle}
-  metaDescription={data.metaDescription}
-  footerCtaLabel={data.footerCtaLabel}
-  footerCtaUrl={data.footerCtaUrl}
-  footerText={data.footerText}
-  category={data.category}
-  canonicalUrl={canonicalUrl}
->
-  <Content />
-</FullReviewLayout>
+{isWhatIs ? (
+  <MiniReviewWhatIsLayout
+    pageTitle={data.pageTitle}
+    metaDescription={data.metaDescription}
+    footerCtaLabel={data.footerCtaLabel}
+    footerCtaUrl={data.footerCtaUrl}
+    footerText={data.footerText}
+    category={data.category}
+    canonicalUrl={canonicalUrl}
+  >
+    <Content />
+  </MiniReviewWhatIsLayout>
+) : (
+  <FullReviewLayout
+    pageTitle={data.pageTitle}
+    metaDescription={data.metaDescription}
+    footerCtaLabel={data.footerCtaLabel}
+    footerCtaUrl={data.footerCtaUrl}
+    footerText={data.footerText}
+    category={data.category}
+    canonicalUrl={canonicalUrl}
+  >
+    <Content />
+  </FullReviewLayout>
+)}

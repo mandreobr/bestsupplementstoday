@@ -592,7 +592,7 @@ category: "men-health"
     class="text-xl md:text-2xl font-bold text-gray-900 mb-3"
     style="border-bottom: none; margin-top: 0;"
   >
-    CONDITION TAGS
+    HEALTH CONDITION TAGS
   </h3>
   <div class="flex flex-wrap gap-2 mb-6">
     <span class="tag-item">prostate health</span>
