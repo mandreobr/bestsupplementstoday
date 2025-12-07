@@ -3,7 +3,7 @@ title: "Prostadine Price – How to Get the Best Discount from the Official Webs
 description: "Prostadine Price – Get the best deal and save on the 6-bottle pack. Natural prostate support with secure checkout and a 60-day guarantee."
 pageTitle: "Prostadine Price and Deals – Save on 6-Bottle Pack Today"
 metaDescription: "Prostadine Price – Get the best deal and save on the 6-bottle pack. Natural prostate support with secure checkout and a 60-day guarantee."
-slug: "prostadine-price-official-website"
+slug: "prostadine-price"
 
 heroImage: "/images/Men-Health/prostadine/hero.png"
 heroAlt: "Prostadine dietary supplement bottle – natural drops for prostate health and urinary support"
