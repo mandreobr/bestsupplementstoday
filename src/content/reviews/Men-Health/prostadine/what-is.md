@@ -143,6 +143,25 @@ canonicalUrl: "https://www.bestsupplementstoday.com/reviews/prostadine-what-is"
 
 <p><strong>Additional Ingredients:</strong> MCT Oil to enhance absorption of fat-soluble plant compounds.</p>
 
+<!-- LABEL IMAGE – final da seção de ingredientes -->
+<div class="my-10 flex flex-col items-center">
+  <a 
+    href="/images/Men-Health/prostadine/label.jpg"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <img
+      src="/images/Men-Health/prostadine/label.jpg"
+      alt="Prostadine supplement facts and ingredients label showing iodine, saw palmetto, shilajit, and pomegranate extract"
+      class="label-image"
+    />
+  </a>
+  <p class="image-caption">
+    Prostadine’s label reveals its clean blend of 9 key nutrients including iodine, saw palmetto, and shilajit — formulated for healthy prostate and urinary flow.
+  </p>
+</div>
+
+
 <!-- CTA 2 – Banner (azul) -->
 <div class="cta-banner">
   <div class="cta-banner-inner">
@@ -233,24 +252,57 @@ canonicalUrl: "https://www.bestsupplementstoday.com/reviews/prostadine-what-is"
   <li>Want a multi-pathway approach to urinary well-being</li>
 </ul>
 
-<!-- CTA 3 – Minimal white layout -->
-<div class="cta-banner" style="background:#FFFFFF; box-shadow:none; border:1px solid #e5e7eb;">
-  <div class="cta-banner-inner">
-    <h2
-      class="cta-banner-title"
-      style="color:#111827; font-size:1.2rem; margin-bottom:0.9rem; border-bottom:none; white-space:nowrap;"
-    >
-      Visit the Full Prostadine Review Before You Decide
-    </h2>
-    <a
-      href="https://www.bestsupplementstoday.com/reviews/prostadine"
-      class="cta-banner-button"
-      style="background-color:#2563EB; color:#FFFFFF;"
-    >
-      Go to Full Review
-    </a>
-  </div>
+<!-- CTA 3 – Link Only Version with Arrow Animation (No underline on arrow) -->
+<style>
+  .cta-3-container {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 1rem;
+    padding: 1.4rem 1.5rem;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: 2rem 0;
+  }
+
+  .cta-3-link {
+    color: #2563eb;
+    font-weight: 600;
+    font-size: 1.05rem;
+    text-decoration: none; /* remove underline from whole link */
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .cta-3-text {
+    text-decoration: underline; /* underline ONLY the text */
+  }
+
+  .cta-3-arrow {
+    display: inline-block;
+    font-size: 1.2rem;
+    color: #2563eb;
+    animation: arrowMove 1.1s infinite ease-in-out;
+  }
+
+  @keyframes arrowMove {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(6px); }
+    100% { transform: translateX(0); }
+  }
+</style>
+
+<div class="cta-3-container">
+  <a 
+    href="https://www.bestsupplementstoday.com/reviews/prostadine"
+    class="cta-3-link"
+  >
+    <span class="cta-3-arrow">➜</span>
+    <span class="cta-3-text">Visit the Full Prostadine Review Before You Decide</span>
+  </a>
 </div>
+
 
 <h2>Final Thoughts</h2>
 
