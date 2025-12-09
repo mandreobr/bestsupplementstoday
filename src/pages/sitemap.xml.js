@@ -1,55 +1,61 @@
 // src/pages/sitemap.xml.js
-// Sitemap completo do site (home + categorias + full reviews + mini-reviews)
+// Sitemap AUTOMÁTICO — agora respeitando a estrutura Category / Product / Mini
 
-import { reviews } from "../data/reviews";
+import { getCollection } from "astro:content";
 
 const BASE_URL = "https://www.bestsupplementstoday.com";
 
-// 1) Rotas estáticas principais
-const STATIC_PATHS = [
-  "/",                        // Home
-  "/reviews",                 // Página geral de reviews
-
-  // Categorias
-  "/reviews/category/weight-loss",
-  "/reviews/category/brain-and-neuro",
-  "/reviews/category/men-health",
-  "/reviews/category/women-health",
-  "/reviews/category/heart-and-circulation",
-  "/reviews/category/liver-and-gut",
-  "/reviews/category/dental-health",
-  "/reviews/category/hearing-and-vision",
-  "/reviews/category/pain-joint-muscle",
-  "/reviews/category/blood-sugar",
-  "/reviews/category/skin-hair-aging",
-  "/reviews/category/other",
-];
-
-// 2) Mini-reviews (adicione aqui todas as novas URLs)
-// Use exatamente o caminho que aparece no navegador, sem / no final.
-const MINI_REVIEW_PATHS = [
-  // exemplos – ajuste para as suas URLs reais:
-  "/reviews/prostadine/what-is",
-  "/reviews/max-boost-plus/what-is",
-  "/reviews/endopeak/what-is",
-  // se tiver outras minis, continue a lista:
-  // "/reviews/flowforce-max/what-is",
-  // "/reviews/total-control-24/what-is",
-];
-
-// 3) Full reviews a partir do arquivo src/data/reviews.ts
-function getReviewPaths() {
-  return reviews.map((item) => `/reviews/${item.slug}`);
-}
-
 export async function GET() {
-  const reviewPaths = getReviewPaths();
+  // 1) Todas as páginas da collection "reviews" (inclui subpastas)
+  const entries = await getCollection("reviews");
 
-  // Junta tudo e remove duplicados
-  const allPaths = Array.from(
-    new Set([...STATIC_PATHS, ...reviewPaths, ...MINI_REVIEW_PATHS])
-  );
+  const reviewPaths = entries
+    .map((entry) => {
+      // Exemplos de entry.slug:
+      // "Men-Health/prostadine/index"
+      // "Men-Health/prostadine/what-is"
+      // "Men-Health/prostadine/ingredients"
+      const parts = entry.slug.split("/");
 
+      if (parts.length < 2) return null;
+
+      // penúltima parte = produto (prostadine, endopeak, etc.)
+      const product = parts[parts.length - 2];
+      // última parte = "index" ou nome da mini (what-is, ingredients, etc.)
+      const last = parts[parts.length - 1];
+
+      // Se for o index.md → URL /reviews/prostadine
+      if (last === "index") {
+        return `/reviews/${product}`;
+      }
+
+      // Se for mini → URL /reviews/prostadine/what-is, /ingredients etc.
+      return `/reviews/${product}/${last}`;
+    })
+    .filter(Boolean);
+
+  // 2) Rotas estáticas fixas
+  const STATIC_PATHS = [
+    "/",
+    "/reviews",
+    "/reviews/category/weight-loss",
+    "/reviews/category/brain-and-neuro",
+    "/reviews/category/men-health",
+    "/reviews/category/women-health",
+    "/reviews/category/heart-and-circulation",
+    "/reviews/category/liver-and-gut",
+    "/reviews/category/dental-health",
+    "/reviews/category/hearing-and-vision",
+    "/reviews/category/pain-joint-muscle",
+    "/reviews/category/blood-sugar",
+    "/reviews/category/skin-hair-aging",
+    "/reviews/category/other",
+  ];
+
+  // 3) Junta tudo e remove duplicados (caso algum se repita)
+  const allPaths = Array.from(new Set([...STATIC_PATHS, ...reviewPaths]));
+
+  // 4) Gera o XML
   const urlsXml = allPaths
     .map(
       (path) => `
@@ -65,8 +71,6 @@ ${urlsXml}
 </urlset>`;
 
   return new Response(xml, {
-    headers: {
-      "Content-Type": "application/xml; charset=utf-8",
-    },
+    headers: { "Content-Type": "application/xml" },
   });
 }
